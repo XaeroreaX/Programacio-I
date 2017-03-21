@@ -93,25 +93,33 @@ int main()
         validacion = tolower(getch());
         while(validacion != 'y' && validacion != 'n')
         {
-            printf("\n error! desea ingresar otro numero? y/n");
+            //printf("\n error! desea ingresar otro numero? y/n");
             validacion = tolower(getch());
         }
 
     }while(validacion == 'y');
     Promedio = (float)acumNumeros/cont;//promedio
+    ///sumatoria de todos el acumulador de impares
 
-    for(cont = 1; cont <= acumNumerosImpares; cont++)
-    {
-        sumatoriaAllNImpares = sumatoriaAllNImpares + cont;
-        printf("\n%d",cont);//mostramos los numeros de la sumatoria
-    }
     ///mostramos todos los parametros por pantalla
-    printf("\nla cantidad de numeros pares es: %d",cantNumPar);
-    printf("\n\nla sumatoria de numeros impares es: %d",acumNumerosImpares);
-    printf("\n\nel promedio de los numeros totales es: %f",Promedio);
-    printf("\n\nel numero maximo es: %d",max);
-    printf("\n\nel numero impar minimo es: %d",minImpar);
-    printf("\n\nlos cantidad de numeros entre 3-15 son %d\n\nla cantidad de numeros entre 16-29 es %d\n\nla cantidad de numeros mayores a 29 son %d",cantNQuince, cantNVeintinueve, cantNMasTreinta);
-    printf("\n\nLa sumatoria de todos los numeros que le anteceden al total de los impares es %d",sumatoriaAllNImpares);
+    printf("\n\nLa cantidad de numeros pares es: %d",cantNumPar);
+
+    printf("\n\nEl promedio de los numeros totales es: %f",Promedio);
+    printf("\n\nEl numero maximo es: %d",max);
+    printf("\n\nLos cantidad de numeros entre 3-15 son %d\n\nla cantidad de numeros entre 16-29 es %d\n\nla cantidad de numeros mayores a 29 son %d",cantNQuince, cantNVeintinueve, cantNMasTreinta);
+
+    if(respuesta1erImpar == true)
+    {
+        printf("\n\nLa sumatoria de numeros impares es: %d",acumNumerosImpares);
+        printf("\n\nEl numero impar minimo es: %d",minImpar);
+        for(cont = acumNumerosImpares; cont > 0 ; cont--)
+        {
+            sumatoriaAllNImpares += cont;
+            printf("\nLista de numeros sumados");
+            printf("%d -",cont);//mostramos los numeros de la sumatoria
+        }
+        printf("\n\nLa sumatoria de todos los numeros que le anteceden al total de los impares es %d\n\n",sumatoriaAllNImpares);
+    }
+    system("pause");
     return 0;
 }
