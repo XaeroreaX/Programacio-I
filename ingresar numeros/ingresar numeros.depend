@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1490104011 source:d:\ingresar numeros\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+	<conio.h>
+	<ctype.h>
+
