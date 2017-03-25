@@ -73,7 +73,7 @@ int main()
             }
         }
 
-        //contando numoeros por su valor
+        //contando numoeros por su valorprintf("\nnumeros sumados");
         if(numeros >= 3 && numeros <= 15)
             cantNQuince++;
         else
@@ -117,7 +117,7 @@ int main()
         {
             sumatoriaAllNImpares += cont;
 
-            printf(" %d",cont);//mostramos los numeros de la sumatoria
+            printf("-%d",cont);//mostramos los numeros de la sumatoria
         }
         printf("\n\nLa sumatoria de todos los numeros que le anteceden al total de los impares es %d\n\n",sumatoriaAllNImpares);
     }
