@@ -112,14 +112,17 @@ int main()
     {
         printf("\n\nLa sumatoria de numeros impares es: %d",acumNumerosImpares);
         printf("\n\nEl numero impar minimo es: %d",minImpar);
+        printf("\nnumeros sumados:\n");
         for(cont = acumNumerosImpares; cont > 0 ; cont--)
         {
             sumatoriaAllNImpares += cont;
-            printf("\nLista de numeros sumados");
-            printf("%d -",cont);//mostramos los numeros de la sumatoria
+
+            printf(" %d",cont);//mostramos los numeros de la sumatoria
         }
         printf("\n\nLa sumatoria de todos los numeros que le anteceden al total de los impares es %d\n\n",sumatoriaAllNImpares);
     }
+    else
+        printf("\n\nno se ingreso ningun numero impar\n");
     system("pause");
     return 0;
 }
