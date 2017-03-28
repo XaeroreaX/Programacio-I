@@ -1,5 +1,13 @@
 # depslib dependency file v1.0
-1490627510 source:d:\xaero\ejercicio 2\main.c
+1490707648 source:d:\xaero\ejercicio 2\main.c
 	<stdio.h>
 	<stdlib.h>
+	"funciones.h"
+
+1490707606 source:d:\xaero\ejercicio 2\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1490707519 d:\xaero\ejercicio 2\funciones.h
 

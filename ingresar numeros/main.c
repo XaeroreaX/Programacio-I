@@ -15,6 +15,9 @@
 a- La sumatoria de todos los números que le anteceden (incluyendolo). Utilizar FOR.
 b- Mostrar todos los números hasta la unidad. Utilizar FOR.*/
 
+int ingresarNumero(int, int);
+
+
 int main()
 {
     ///Declaramos variables
@@ -29,6 +32,7 @@ int main()
     ///ingresamos y procesamos
     do
     {
+        ingresarNumero(numeros, cont);
         if(cont>0)
             printf("\n\n");
         printf("ingrese el numero %d\n",cont+1);
@@ -99,7 +103,6 @@ int main()
 
     }while(validacion == 'y');
     Promedio = (float)acumNumeros/cont;//promedio
-    ///sumatoria de todos el acumulador de impares
 
     ///mostramos todos los parametros por pantalla
     printf("\n\nLa cantidad de numeros pares es: %d",cantNumPar);

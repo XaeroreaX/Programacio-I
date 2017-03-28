@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1490705253 source:d:\xaero\librerias\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funtion.h"
+
+1490704975 d:\xaero\librerias\funtion.h
+
+1490704988 source:d:\xaero\librerias\funtion.c
+	<stdio.h>
+	"funtion.h"
+

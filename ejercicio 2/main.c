@@ -13,50 +13,18 @@ siguiente información:
 6. Empleado femenino con mayor edad (mostrar legajo y sueldo)*/
 #include <stdio.h>
 #include <stdlib.h>
-int ingreseNumero(char Mensaje[], int, int);
-/** \brief ingresa un numero con un mensaje y lo valida con un numero minimo
- *
- * \param mensaje que quiera mostrar
- * \param numero a ingresar
- * \param el minimo que tiene el numero
- * \return un valor entero que ingreso
- *
- */
- int validarMinimo(int ,int);
- /** \brief valida enteros solo minimos
-  *
-  * \param un numero
-  * \param y el minimo
-  * \return un entero ya validado
-  *
-  */
-
+#include "funciones.h"
 
 
 int main()
 {
     int legajo;
     float sueldo;
-    legajo = ingreseNumero("ingrese el Legajo", legajo, 1000);
+    legajo = ingreseNumero("ingrese el Legajo(mas de 1000)", legajo, 1000);
+    sueldo = ingreseNumeroF("ingrese un sueldo entre 1500 y 10000", 1500, 10000);
 
-    printf("%d",legajo);
+    printf("%f",sueldo);
     return 0;
 }
 
-int ingreseNumero(char Mensaje[], int numero, int min)
-{
-    printf("%s: ",Mensaje);
-    scanf("%d", &numero);
-    numero = validarMinimo(numero, min);
-    return numero;
-}
 
-int validarMinimo(int numero, int min)
-{
-    while(numero < min)
-    {
-        printf("ingreso mal el numero, ingrese numero mayores a %d: ", min);
-        scanf("%d", &numero);
-    }
-    return numero;
-}
