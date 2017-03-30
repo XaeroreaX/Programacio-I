@@ -2,10 +2,13 @@
 #include <stdlib.h>
 #include "funciones.h"
 
+
+
 int main()
 {
     char seguir='s';
     int opcion=0;
+    float num1 = 0, num2 = 0, resultado = 0;
     while(seguir=='s')
     {
         printf("1- Ingresar 1er operando (A=x)\n");
@@ -23,14 +26,27 @@ int main()
         switch(opcion)
         {
             case 1:
+                num1 = ingresarNumeroF("ingrese el 1er operando", num1);
+
                 break;
             case 2:
+                num2 = ingresarNumeroF("ingrese el 2do operando", num2);
                 break;
             case 3:
+                resultado = sumarFloats(num1, num2);
+                printf("el resultado de la suma es %f\n\n", resultado);
                 break;
             case 4:
+                resultado = restarFloats(num1, num2);
+                printf("el resultado de la resta es %f\n\n", resultado);
                 break;
             case 5:
+                while(num1 == 0)
+                {
+                    num1 = ingresarNumeroF("no puede dividir por 0, ingrese de nuevo", num1);
+                }
+                resultado = dividirFloats(num1, num2);
+                printf("el resultado de la division es %f\n\n", resultado);
                 break;
             case 6:
                 break;
@@ -42,7 +58,13 @@ int main()
                 seguir = 'n';
                 break;
         }
+        printf("operando 1 es %f y operando 2 es %f\n\n", num1, num2);
+
+    }
 
 
     return 0;
 }
+
+
+
