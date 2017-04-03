@@ -48,10 +48,10 @@ float multiplicarFloats(float num1, float num2);
  *
  */
 
-float factorial(float);
-/** \brief hace factorial de un flotante ya validado
+long long int factorial(int);
+/** \brief hace factorial de un entero de un flotante ya validado
  *
- * \param numero flotante
+ * \param numero entero de un float validado
  * \return el resultado del factorial
  *
  */

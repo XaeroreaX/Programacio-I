@@ -57,9 +57,9 @@ float multiplicarFloats(float num1, float num2)
 
 
 }
-float factorial(float num)
+long long int factorial(int num)
 {
-    float valor;
+    long long int valor;
 
     if(num == 0)
     {

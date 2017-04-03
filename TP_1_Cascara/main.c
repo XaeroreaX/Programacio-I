@@ -7,8 +7,9 @@
 int main()
 {
     char seguir='s';
-    int opcion=0;
-    float num1 = 0, num2 = 0, dividendo;
+    int opcion=0, factor;
+    long long int resultadoFactorial;
+    float num1 = 0, num2 = 0, resultado;
     while(seguir=='s')
     {
         printf("1- Ingresar 1er operando (A=x)\n");
@@ -20,55 +21,80 @@ int main()
         printf("7- Calcular el factorial (A!)\n");
         printf("8- Calcular todas las operacione\n");
         printf("9- Salir\n");
-
+        printf("operando 1 es %f \noperando 2 es %f\n\n", num1, num2);
         scanf("%d",&opcion);
 
         switch(opcion)
         {
             case 1:
                 num1 = ingresarNumeroF("ingrese el 1er operando", num1);
-                dividendo = num1;
-                //printf("%f", dividendo);
+                factor = num1;
                 break;
             case 2:
                 num2 = ingresarNumeroF("ingrese el 2do operando", num2);
                 break;
             case 3:
-                num1 = sumarFloats(num1, num2);
-                //printf("el resultado de la suma es %f\n\n", num1);
+                resultado = sumarFloats(num1, num2);
+                printf("el resultado de la suma es %f\n\n", resultado);
                 break;
             case 4:
-                num1 = restarFloats(num1, num2);
-                //printf("el resultado de la resta es %f\n\n", num1);
+                resultado = restarFloats(num1, num2);
+                printf("el resultado de la resta es %f\n\n", resultado);
                 break;
             case 5:
                 while(num2 == 0)
                 {
                     num2 = ingresarNumeroF("no puedes dividir 0, ingrese de nuevo", num1);
                 }
-                num2 = dividirFloats(num1, num2);
-               // printf("el resultado de la division es %f\n\n", num1);
+                resultado = dividirFloats(num1, num2);
+                printf("el resultado de la division es %f\n\n", resultado);
                 break;
             case 6:
-                num1 = multiplicarFloats(num1,num2);
-                //printf("el resultado de la multiplicacion es %f\n\n", num1);
+                resultado = multiplicarFloats(num1,num2);
+                printf("el resultado de la multiplicacion es %f\n\n", resultado);
                 break;
             case 7:
-                while(num1 - (int)dividendo != 0 || num1 < 0)
+                while(num1 != factor || (num1 < 1 || num1 > 25))
                 {
-                    num1 = ingresarNumeroF("no puedes hacer factorial de numeros decimales", num1);
-                    dividendo = num1;
+                    num1 = ingresarNumeroF("no puedes hacer factorial de numeros decimales ni menores a 1 y mayores de 25", num1);
+                    factor = num1;
                 }
-                num1 = factorial(num1);
+                resultadoFactorial = factorial(factor);
+                printf("el resultado del facotorial es: %lld \n\n",resultadoFactorial);
                 break;
             case 8:
+
+                resultado = sumarFloats(num1, num2);
+                printf("el resultado de la suma es %f\n\n", resultado);
+
+                resultado = restarFloats(num1, num2);
+                printf("el resultado de la resta es %f\n\n", resultado);
+
+                while(num2 == 0)
+                {
+                    num2 = ingresarNumeroF("no puedes dividir 0, ingrese de nuevo", num1);
+                }
+                resultado = dividirFloats(num1, num2);
+                printf("el resultado de la division es %f\n\n", resultado);
+
+                resultado = multiplicarFloats(num1,num2);
+                printf("el resultado de la multiplicacion es %f\n\n", resultado);
+
+                while(num1 != factor || (num1 < 1 || num1 > 25))
+                {
+                    num1 = ingresarNumeroF("no puedes hacer factorial de numeros decimales ni menores a 1 y mayores de 25", num1);
+                    factor = num1;
+                }
+                resultadoFactorial = factorial(factor);
+                printf("el resultado del facotorial es: %lld \n\n",resultadoFactorial);
+
                 break;
             case 9:
                 seguir = 'n';
                 break;
         }
-        printf("operando 1 es %f \noperando 2 es %f\n\n", num1, num2);
-
+        system("pause");
+        system("cls");
     }
 
 
