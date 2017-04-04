@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1491307544 source:c:\users\alumno\desktop\vectorordenar\main.c
+	<stdio.h>
+	<stdlib.h>
+
