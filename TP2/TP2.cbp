@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="FSPersona.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="FSPersona.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
