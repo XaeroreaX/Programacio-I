@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1492440003 source:d:\xaero\perro\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
