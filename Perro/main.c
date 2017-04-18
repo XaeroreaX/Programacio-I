@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define P 3
-#define D 5
+#define D 20
 #define PITBULL 1
 #define OVEJERO 2
+#define PP 3
 /*a)Listado de perros c/ nombre de su dueño
 
 b)Listado de Dueños c/ sus perros
@@ -33,9 +33,12 @@ typedef struct
 }SDuenio;
 
 
-void HarcodearSPerro(int, SPerro[]);
-void HarcodearSDuenio(int, SDuenio[]);
+void HarcodearSPerro(SPerro[]);
+void HarcodearSDuenio(SDuenio[]);
 void mostrarPerro(int, int, SPerro[], SDuenio[]);
+void mostrarDuenio(int, int, SPerro[], SDuenio[]);
+void mostrarDuenioRPP(int, int, SPerro[], SDuenio[]);
+void mostrarDuenioIrresponsables(int, int, SPerro[], SDuenio[]);
 void mostrarRaza(int);
 void mostrarVacunas(int);
 SPerro CargarSPerro();
@@ -45,12 +48,18 @@ SDuenio CargarSDuenio();
 int main()
 {
     SDuenio duenios[D];
-    SPerro perros[P];
+    SPerro perros[D];
     int i = 0;
-    HarcodearSDuenio(D, duenios);
-    HarcodearSPerro(P, perros);
+    //HarcodearSDuenio(duenios);
+    //HarcodearSPerro(perros);
 
-    mostrarPerro(P, D, perros, duenios);
+    //mostrarPerro(D, D, perros, duenios);
+
+    //mostrarDuenio(D, D, perros, duenios);
+
+    //mostrarDuenioRPP(D, D, perros, duenios);
+
+    //mostrarDuenioIrresponsables(D, D, perros, duenios);
 
     /*for(i = 0; i < D; i++)
     {
@@ -67,7 +76,9 @@ int main()
 SPerro CargarSPerro()
 {
     SPerro perro;
+    char buffer[1024];
     printf("ingrese el identificador del perro:");
+
     scanf("%d", &perro.identificador);
     printf("ingrese la raza del perro(del 1 al 5):");
     scanf("%d", &perro.raza);
@@ -96,7 +107,7 @@ SDuenio CargarSDuenio()
     return duenio;
 }
 
-void HarcodearSDuenio(int tam, SDuenio duenio[tam])
+void HarcodearSDuenio(SDuenio duenio[D])
 {
 
     int i = 0;
@@ -112,16 +123,16 @@ void HarcodearSDuenio(int tam, SDuenio duenio[tam])
     }
 
 }
-void HarcodearSPerro(int tam, SPerro perror[tam])
+void HarcodearSPerro(SPerro perror[D])
 {
     int i;
-    int identificador[P] = {1, 2, 3};
-    int raza[P] = {PITBULL, OVEJERO, PITBULL};
-    char nombre[P][20] = {"toby", "doby", "yogui"};
-    int vacunas[P] = {1, 0, 1};
-    int duenio[P] = {1002, 1004, 1003};
+    int identificador[D] = {1, 2, 3, 4, 5};
+    int raza[D] = {PITBULL, OVEJERO, PITBULL, PP, PP};
+    char nombre[D][20] = {"toby", "doby", "yogui", "neko","firulaiz"};
+    int vacunas[D] = {0, 0, 0, 0, 0};
+    int duenio[D] = {1002, 1004, 1003, 1002, 1004};
 
-    for(i = 0; i < P; i++)
+    for(i = 0; i < D; i++)
     {
         perror[i].identificador = identificador[i];
         perror[i].raza = raza[i];
@@ -138,15 +149,112 @@ void mostrarPerro(int tamP, int tamD, SPerro perro[tamP], SDuenio duenio[tamD])
     {
 
         for(j = 0; j < tamD && duenio[j].codigo != perro[i].duenio; j++);
-        printf("Identificador:%d\nNombre del perro: %s\nRaza del perro: ", perro[i].identificador, perro[i].nombre, duenio[j].nombre);
-        mostrarRaza(perro[i].raza);
-        printf("\nNombre del duenio: %s\nEstado de las vacunas:", duenio[j].nombre);
-        mostrarVacunas(perro[i].vacunasAlDia);
-        printf("\n---------------------------------------------------\n");
+        printf("Nombre del perro: %s y Nombre del duenio: %s\n", perro[i].nombre, duenio[j].nombre);
+
+    }
+
+}
+
+void mostrarDuenio(int tamP, int tamD, SPerro perro[tamP], SDuenio duenio[tamD])
+{
+    int i, j;
+    for(i = 0; i < tamD; i++)
+    {
+        for(j = 0; j < tamP && duenio[i].codigo != perro[j].duenio; j++);
+        if(j < tamP)
+            printf("el nombre del duenio es %s y tiene los siguientes perros:\n", duenio[i].nombre);
+        else
+            printf("el duenio %s no tiene perros\n",duenio[i].nombre);
+        for(j = 0; j< tamP; j++)
+        {
+            if(duenio[i].codigo == perro[j].duenio)
+            {
+                printf("-%s\n", perro[j].nombre);
+
+            }
+
+
+
+        }
+
+
+
+    }
+
+}
+
+void mostrarDuenioRPP(int tamP, int tamD, SPerro perro[tamP], SDuenio duenio[tamD])
+{
+    int i = 0, j = 0, flag = 0;
+    for(i = 0; i < tamD; i++)
+    {
+        for(j = 0; j < tamP; j++)
+        {
+            if(duenio[i].codigo == perro[j].duenio && perro[j].raza == PP)
+            {
+                flag = 1;
+                break;
+            }
+        }
+        if(flag == 1)
+            break;
+    }
+
+    if(flag == 0)
+    {
+        printf("no hay duenios con perros de la raza PP");
+
+    }
+    else
+    {
+        for(i = 0; i < tamD; i++)
+        {
+            for(j = 0; j < tamP && (duenio[i].codigo != perro[j].duenio || perro[j].raza != PP); j++);
+            if(j < tamP)
+            {
+                printf("el duenio %s tiene los siguientes perros de la raza PP:", duenio[i].nombre);
+                for(j = 0; j < tamP; ++j)
+                {
+                    if(duenio[i].codigo == perro[j].duenio && perro[j].raza == PP)
+                    {
+                        printf(" %s\t",perro[j].nombre);
+                    }
+
+                }
+                printf("\n\n");
+            }
+            else
+            {
+                printf("el duenio %s no tiene perros de la raza\n\n", duenio[i].nombre);
+            }
+
+        }
     }
 
 
+}
 
+void mostrarDuenioIrresponsables(int tamP, int tamD, SPerro perro[tamP], SDuenio duenio[tamD])
+{
+    int i, j, flag = 0;
+
+    for(i = 0; i < tamD; i++)
+    {
+        for(j = 0; j < tamP && (duenio[i].codigo != perro[j].duenio || perro[j].vacunasAlDia == 1); j++);
+        if(j < tamP)
+        {
+            printf("el duenio %s tiene que vacunar a ", duenio[i].nombre);
+
+            for(j = 0; j < tamP; j++)
+            {
+                if(duenio[i].codigo == perro[j].duenio && perro[j].vacunasAlDia == 0)
+                {
+                    printf(".%s ", perro[j].nombre);
+
+                }
+            }
+        }
+    }
 
 }
 
@@ -161,6 +269,8 @@ void mostrarRaza(int raza)
         case OVEJERO:
             printf("Ovejero");
             break;
+        case PP:
+            printf("PP");
         default:
             printf("error");
             break;
