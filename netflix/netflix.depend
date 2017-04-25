@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1493131972 source:d:\xaero\netflix\main.c
+	<stdio.h>
+	<stdlib.h>
+	"FSbaseDeNetflix.h"
+
+1493129678 d:\xaero\netflix\fsbasedenetflix.h
+
+1493131924 source:d:\xaero\netflix\fsbasedenetflix.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"FSbaseDeNetflix.h"
+
