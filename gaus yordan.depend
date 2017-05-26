@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1495827305 source:c:\documents and settings\atilio\escritorio\gaus yordan\main.c
+	<stdio.h>
+	<stdlib.h>
+	"SMatrizGauz.h"
+
+1495827216 c:\documents and settings\atilio\escritorio\gaus yordan\smatrizgauz.h
+
+1495828942 source:c:\documents and settings\atilio\escritorio\gaus yordan\smatrizgauz.c
+	<stdio.h>
+	<stdlib.h>
+	"SMatrizGauz.h"
+
