@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1497807039 source:c:\users\jmpit\downloads\proyectos\projectos del cod\probar arraylis\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1496660564 c:\users\jmpit\downloads\proyectos\projectos del cod\probar arraylis\arraylist.h
+
+1497807287 source:c:\users\jmpit\downloads\proyectos\projectos del cod\probar arraylis\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
