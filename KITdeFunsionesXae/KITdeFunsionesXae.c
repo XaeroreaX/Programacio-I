@@ -101,3 +101,25 @@ void MostrarS(SPersona persona)
     printf("Nombre:%s----Nacionalidad:%s----Telefono:%s\n------------------------------------\nEdad:%d----DNI:%d----Altura:%f----Peso:%f\n", persona.nombre, persona.nacionalidad, persona.telefono, persona.edad, persona.dni, persona.altura, persona.peso);
 
 }
+
+
+/**-----------------------------------------------------------------------------------------------------------------------*/
+
+Struct* contructor1(char string[1024], int entero)
+{
+    int len;
+    Struct* construir;
+
+    construir = (Struct*) malloc(sizeof(Struct));
+
+    if(construir == NULL) return construir;
+
+    construir->string = (char*) malloc(sizeof(char)*(strlen(string) + 1));
+
+
+    strcpy(construir->string, string);
+    construir->entero = entero;
+
+    return construir;
+
+}
