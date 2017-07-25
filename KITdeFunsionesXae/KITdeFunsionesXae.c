@@ -123,3 +123,141 @@ Struct* contructor1(char string[1024], int entero)
     return construir;
 
 }
+
+
+int harcodearSUser(ArrayList* userList)
+{
+    int i, returnAux = DENEID, id[5] = {1, 1001, 1002, 1003, 1004};
+    char nickName[5][50] = {"XaeroreaX", "mr. queen", "camila","Atilio", "pucci"};
+    char password[5][50] = {"master6060", "rey2501", "camila","abel6060", "Made in heaven"};
+    SUser* user;
+
+
+
+    if(user == NULL || userList == NULL) return returnAux;
+
+    for(i = 0; i < 5; i++)
+    {
+
+
+        user = (SUser*) malloc(sizeof(SUser));
+        user->id = id[i];
+
+        strcpy(user->nickName, nickName[i]);
+        strcpy(user->password, password[i]);
+
+        returnAux = userList->add(userList, user);
+        if(returnAux == DENEID) break;
+
+    }
+
+    return returnAux;
+}
+
+int menuAdministrador(ArrayList* movieList)
+{
+
+    char seguir='s';
+    int opcion=0, returnAux = DENEID;
+
+    if(movieList == NULL) return returnAux;
+
+    while(seguir=='s')
+        {
+            printf("1- Agregar pelicula\n");
+            printf("2- Borrar pelicula\n");
+            printf("3- Modificar pelicula\n");
+            printf("4- Generar pagina web\n");
+            printf("5- Limpiar la lista de peliculas\n");
+            printf("6- Salir\n");
+
+            scanf("%d",&opcion);
+
+            switch(opcion)
+            {
+                case 1:
+                    system("cls");
+
+                    if(addMovieList(movieList) == DENEID) printf("Error en la funcion addMovieList\n");
+
+                    system("pause");
+                    break;
+                case 2:
+                    system("cls");
+                    if(removeMovieList(movieList) == DENEID) printf("Error en la funcion removeMovieList\n");
+
+                    system("pause");
+                    break;
+                case 3:
+                    system("cls");
+
+                    if(setMovieList(movieList) == DENEID) printf("Error en la funcion removeMovieList\n");
+
+                    system("pause");
+                    break;
+                case 4:
+                    system("cls");
+
+                    if(generarPagina(movieList) == DENEID) printf("Error en la funcion generarPagina\n");
+
+                    system("pause");
+                   break;
+                case 5:
+                    system("cls");
+                    if(movieList->clear(movieList) == DENEID)
+                    {
+
+
+                        printf("ERROR en la funsion CLEAR en movieList\n");
+                    }
+                    else
+                    {
+
+
+                        printf("el arrayList fue limpiado\n");
+                    }
+
+                    system("pause");
+                    break;
+                case 6:
+                    seguir = 'n';
+                    break;
+
+
+            }
+
+            if(movieList->sort(movieList, compareMovie, 1) == DENEID ) printf("ERROR en la funsion sort de arrayList de EMovie");
+            movieListToFile(movieList);
+            system("cls");
+
+        }
+    returnAux = OK;
+    return returnAux;
+}
+
+/**-------------------------------------------------------////n)
+
+int charAddDinamic(char* caracter)
+{
+    int len, returnAux = DENEID;
+    char* aux;
+
+    caracter = (char*) malloc(sizeof(char) * 1024);
+
+    if(caracter == NULL) return returnAux;
+
+    fflush(stdin);
+    scanf("%1023[^\n]", caracter);
+
+    len = strlen(caracter);
+
+    aux = (char*) realloc(caracter, sizeof(char*)* len+1);
+
+    if(aux != NULL)
+    {
+        caracter = aux;
+        returnAux = OK;
+    }
+
+    return returnAux;
+}
