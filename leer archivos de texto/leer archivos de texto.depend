@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1501007553 source:c:\users\public\cv\leer archivos de texto\fuscion.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"fuscion.h"
+
+1501005799 c:\users\public\cv\leer archivos de texto\fuscion.h
+
+1501007517 source:c:\users\public\cv\leer archivos de texto\main.c
+	<stdio.h>
+	<stdlib.h>
+	"fuscion.h"
+
