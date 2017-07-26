@@ -25,7 +25,7 @@ void HarcodearSArray(SPersona persona[H])
     int i = 0;
     char nombre[H][N] = {"Martin", "Roberto", "Claudia", "Camila", "Jesus"};
     char telefono[H][N] = {"155497-5912","4433-5477","155457-5719","4435-5246","155248-4795"};
-    char nacionalidad[H][N] = {"Argentina", "Estados Unidos", "Espa�a", "Africa", "Mexico"};
+    char nacionalidad[H][N] = {"Argentina", "Estados Unidos", "España", "Africa", "Mexico"};
     int edad[H] = {22, 66, 15, 33, 42};
     int dni[H] = {22458975, 66684219, 15785132, 33237981, 42428794};
     float altura[H] = {1.85, 2.10, 1.63, 1.25, 1.90};
@@ -260,4 +260,53 @@ int charAddDinamic(char* caracter)
     }
 
     return returnAux;
+}
+
+
+int loadDataFile(char* fileName,struct S_Data* array,int arrayLen)
+{
+    FILE *fp;
+    char lineStr[128]; // variable donde almacenamos la línea leída
+
+    // Abrimos el archivo para lectura
+    fp = fopen(fileName , "r");
+    if(fp == NULL)
+    {
+       perror("Error opening file");
+       return -1;
+    }
+
+    // Leemos las líneas
+    int index=0;
+    while( fgets (lineStr, 128, fp)!=NULL ) // Leemos una línea, 128 caracteres como máximo
+    {
+        //printf(lineStr);
+
+        // Separamos las palabras por el "="
+        int indexDivider = strcspn(lineStr,"="); // devuelve la posición del signo "="
+
+        int keyLen = indexDivider+1; // calculo el tamaño del texto de la clave (palabra antes del "=")
+        int valueLen = strlen(lineStr) - indexDivider -1; // calculo el tamaño del texto del valor (palabra despues del "=")
+
+        char* key = (char* )malloc(keyLen); // pedimos memoria para guardar la clave
+        char* value = (char* )malloc(valueLen); // pedimos memoria para guardar el valor
+
+        strncpy(key,lineStr,keyLen-1);  // copiamos el string con la clave
+        key[keyLen-1]=0x00;
+
+        strncpy(value,&lineStr[keyLen],valueLen-1); //copiamos el atring con el valor
+        value[valueLen-1]=0x00;
+
+        // guardamos los punteros creados con malloc en la struct
+        array[index].key = key;
+        array[index].value = value;
+
+        // contamos la cantidad de items en el array, si se llega al maximo pemitido, se sale
+        index++;
+        if(index>=arrayLen)
+            break;
+    }
+
+    fclose(fp);
+    return index;
 }
