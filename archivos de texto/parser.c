@@ -8,101 +8,88 @@
 int parserEmployee(FILE* pFile , ArrayList* pArrayListEmployee)
 {
     int i;
-    char auxString[128], auxChar;
+    char auxString[128] , auxChar;
 
     Employee* auxEmployee;
 
-    pFile = fopen("data.csv","r");
+    pFile = fopen("data.csv", "r");
 
-    if(pFile == NULL || pArrayListEmployee == NULL)
-    {
-        printf("no se pudo leer el archivo\n")
-        return -1;
-    }
+    fgets(auxString,128,pFile);
 
-    fgets(auxString, 128, pFile);
-    freeString(auxString, 128);
+    printf("%s",auxString);
+
+    vaciar(128, auxString);
 
     while(!feof(pFile))
     {
-        for(i = 0; auxChar != ","; i++)
-        {
-            auxChar = fgetc(pFile);
+        fgetsToChar(pFile, 128, auxString, ',');
+        auxEmployee->id = atoi(auxString);
 
-            if(auxChar != ",")
-            {
-                auxString[i] = auxChar;
-            }
+        vaciar(128, auxString);
 
-        }
-
-        auxEmployee->id = atoi(auxChar);
-
-
-        for(i = 0; auxChar != ","; i++)
-        {
-            auxChar = fgetc(pFile);
-
-            if(auxChar != ",")
-            {
-                auxString[i] = auxChar;
-            }
-
-        }
-
-
+        fgetsToChar(pFile, 128, auxString, ',');
         strcpy(auxEmployee->name, auxString);
 
+        auxChar = fgetc(pFile);
 
-        for(i = 0; auxChar != ","; i++)
+        vaciar(128, auxString);
+
+        fgetsToChar(pFile, 128, auxString, ',');
+        strcpy(auxEmployee->lastName, auxString);
+
+
+        vaciar(128, auxString);
+
+        fgetsToChar(pFile, 128, auxString, '\n');
+
+        switch(auxString[0])
         {
-            auxChar = fgetc(pFile);
-
-            if(auxChar != ",")
-            {
-                auxString[i] = auxChar;
-            }
-
+            case 't':
+                auxEmployee->isEmpty = 1;
+                break;
+            case 'f':
+                auxEmployee->isEmpty = 0;
+                break;
         }
 
+        pArrayListEmployee->add(pArrayListEmployee, auxEmployee);
+        vaciar(128, auxString);
 
-        strcpy(auxEmployee->name, auxString);
 
-        fgets(auxString, 6, pFile);
-
+       // system("pause");
     }
 
-    fclose(pFile);
-
+    printf("%s\n",auxString);
     return 0;
 }
 
+void fgetsToChar(FILE* pFile, int size, char string[size], char To)
+{
+    int i;
+
+    char auxChar;
 
 
-void freeString(char String[size], int size)
+    for(i = 0; auxChar != To && i < size; i++)
+    {
+        auxChar = fgetc(pFile);
+        if(auxChar != To)
+            string[i] = auxChar;
+
+    }
+
+
+
+}
+
+void vaciar(int size, char string[size])
 {
     int i;
 
     for(i = 0; i < size; i++)
-        char String[i] = '\0';
+        string[i] = '\0';
+
 
 }
 
-/*
-char* FgetsToChar(FILE* pFile, char to)
-{
 
-
-    for(i = 0; auxChar != ","; i++)
-    {
-        auxChar = fgetc(pFile);
-
-        if(auxChar != ",")
-        {
-            auxString[i] = auxChar;
-        }
-
-        }
-
-
-}*/

@@ -20,10 +20,13 @@ int main()
 
 
     char seguir='s';
-    int opcion=0, returnAux = DENEID;
+    int opcion=0;
     FILE* pFile;
 
     ArrayList* pArrayListEmployee = al_newArrayList();
+
+
+    parserEmployee(pFile, pArrayListEmployee);
 
     while(seguir=='s')
         {
