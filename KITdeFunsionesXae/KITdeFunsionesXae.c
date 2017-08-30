@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define H 5
-#define N 51
 #include "KITdeFunsionesXae.h"
+
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
+
 
 SPersona HarcodearS(char nombre[NT], char telefono[NT], char nacionalidad[N], int edad, int dni, float altura, float peso)
 {
@@ -19,13 +21,14 @@ SPersona HarcodearS(char nombre[NT], char telefono[NT], char nacionalidad[N], in
     return persona;
 }
 
-/**-----------------------------------------------------------------------------------------------------------------------*/
+/**-----------------------------------------------------------------------------------------------------------------------------*/
+
 void HarcodearSArray(SPersona persona[H])
 {
     int i = 0;
     char nombre[H][N] = {"Martin", "Roberto", "Claudia", "Camila", "Jesus"};
     char telefono[H][N] = {"155497-5912","4433-5477","155457-5719","4435-5246","155248-4795"};
-    char nacionalidad[H][N] = {"Argentina", "Estados Unidos", "España", "Africa", "Mexico"};
+    char nacionalidad[H][N] = {"Argentina", "Estados Unidos", "Espa�a", "Africa", "Mexico"};
     int edad[H] = {22, 66, 15, 33, 42};
     int dni[H] = {22458975, 66684219, 15785132, 33237981, 42428794};
     float altura[H] = {1.85, 2.10, 1.63, 1.25, 1.90};
@@ -44,7 +47,8 @@ void HarcodearSArray(SPersona persona[H])
 
 }
 
-/**-----------------------------------------------------------------------------------------------------------------------*/
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
 
 
 SPersona cargarPersona(int tam, SPersona persona)
@@ -75,7 +79,8 @@ SPersona cargarPersona(int tam, SPersona persona)
 }
 
 
-/**-----------------------------------------------------------------------------------------------------------------------*/
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
 
 char cargarCaracter(int tam, caracteres[tam])
 {
@@ -92,7 +97,8 @@ char cargarCaracter(int tam, caracteres[tam])
     return caracteres[tam];
 }
 
-/**-----------------------------------------------------------------------------------------------------------------------*/
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
 
 
 void MostrarS(SPersona persona)
@@ -103,7 +109,8 @@ void MostrarS(SPersona persona)
 }
 
 
-/**-----------------------------------------------------------------------------------------------------------------------*/
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
 
 Struct* contructor1(char string[1024], int entero)
 {
@@ -124,6 +131,9 @@ Struct* contructor1(char string[1024], int entero)
 
 }
 
+
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
 
 int harcodearSUser(ArrayList* userList)
 {
@@ -154,6 +164,10 @@ int harcodearSUser(ArrayList* userList)
     return returnAux;
 }
 
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
+
+
 int menuAdministrador(ArrayList* movieList)
 {
 
@@ -178,44 +192,31 @@ int menuAdministrador(ArrayList* movieList)
                 case 1:
                     system("cls");
 
-                    if(addMovieList(movieList) == DENEID) printf("Error en la funcion addMovieList\n");
+
 
                     system("pause");
                     break;
                 case 2:
                     system("cls");
-                    if(removeMovieList(movieList) == DENEID) printf("Error en la funcion removeMovieList\n");
+
 
                     system("pause");
                     break;
                 case 3:
                     system("cls");
 
-                    if(setMovieList(movieList) == DENEID) printf("Error en la funcion removeMovieList\n");
 
                     system("pause");
                     break;
                 case 4:
                     system("cls");
 
-                    if(generarPagina(movieList) == DENEID) printf("Error en la funcion generarPagina\n");
+
 
                     system("pause");
                    break;
                 case 5:
                     system("cls");
-                    if(movieList->clear(movieList) == DENEID)
-                    {
-
-
-                        printf("ERROR en la funsion CLEAR en movieList\n");
-                    }
-                    else
-                    {
-
-
-                        printf("el arrayList fue limpiado\n");
-                    }
 
                     system("pause");
                     break;
@@ -235,7 +236,7 @@ int menuAdministrador(ArrayList* movieList)
     return returnAux;
 }
 
-/**-------------------------------------------------------////n)
+/**-----------------------------------------------------------------------------------------------------------------------------*/
 
 int charAddDinamic(char* caracter)
 {
@@ -262,51 +263,152 @@ int charAddDinamic(char* caracter)
     return returnAux;
 }
 
+/**-----------------------------------------------------------------------------------------------------------------------------*/
 
-int loadDataFile(char* fileName,struct S_Data* array,int arrayLen)
+int userListToFile(ArrayList* userList)
 {
-    FILE *fp;
-    char lineStr[128]; // variable donde almacenamos la línea leída
+    FILE* file;
+    int returnAux = DENEID, index;
 
-    // Abrimos el archivo para lectura
-    fp = fopen(fileName , "r");
-    if(fp == NULL)
+    SUser* user;
+
+    user = (SUser*) malloc(sizeof(SUser));
+
+    file = fopen("dataUser.dat", "w+b");
+
+    if(file == NULL || userList == NULL)
     {
-       perror("Error opening file");
-       return -1;
+        fclose(file);
+        return returnAux;
     }
 
-    // Leemos las líneas
-    int index=0;
-    while( fgets (lineStr, 128, fp)!=NULL ) // Leemos una línea, 128 caracteres como máximo
+
+    for(index = 0; index < userList->len(userList); index++)
     {
-        //printf(lineStr);
+        user =(SUser*) userList->get(userList, index);
 
-        // Separamos las palabras por el "="
-        int indexDivider = strcspn(lineStr,"="); // devuelve la posición del signo "="
+        fwrite(user, sizeof(SUser), 1 ,file);
 
-        int keyLen = indexDivider+1; // calculo el tamaño del texto de la clave (palabra antes del "=")
-        int valueLen = strlen(lineStr) - indexDivider -1; // calculo el tamaño del texto del valor (palabra despues del "=")
-
-        char* key = (char* )malloc(keyLen); // pedimos memoria para guardar la clave
-        char* value = (char* )malloc(valueLen); // pedimos memoria para guardar el valor
-
-        strncpy(key,lineStr,keyLen-1);  // copiamos el string con la clave
-        key[keyLen-1]=0x00;
-
-        strncpy(value,&lineStr[keyLen],valueLen-1); //copiamos el atring con el valor
-        value[valueLen-1]=0x00;
-
-        // guardamos los punteros creados con malloc en la struct
-        array[index].key = key;
-        array[index].value = value;
-
-        // contamos la cantidad de items en el array, si se llega al maximo pemitido, se sale
-        index++;
-        if(index>=arrayLen)
-            break;
     }
 
-    fclose(fp);
-    return index;
+
+
+    fclose(file);
+    return returnAux;
+}
+
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
+
+int fileToMovieList(ArrayList* movieList)
+{
+    FILE* file;
+    int returnAux = DENEID, index, size;
+
+    EMovie* movie;
+
+
+
+    file = fopen("data.dat", "rb");
+
+    if(file == NULL || movieList == NULL)
+    {
+        fclose(file);
+        return returnAux;
+    }
+
+    fseek(file, 0 , SEEK_END);
+
+    size = ftell(file)/sizeof(EMovie);
+
+    rewind(file);
+
+    for(index = 0; index<size; index++)
+    {
+        movie = (EMovie*) malloc(sizeof(EMovie));
+
+        fread(movie, sizeof(EMovie), 1,file);
+
+        returnAux = movieList->add(movieList, movie);
+        if(returnAux == DENEID) break;
+
+    }
+/*
+    len = showMovieListIndex(movieList);
+        if(len == DENEID) printf("Error en la funcion showMovieList");*/
+
+    fclose(file);
+    return returnAux;
+}
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
+
+int compareMovie(void* MovieA, void* MovieB)
+{
+
+    if(((EMovie*)MovieA)->puntaje < ((EMovie*)MovieB)->puntaje)
+    {
+        return 1;
+    }
+
+
+    if(((EMovie*)MovieA)->puntaje > ((EMovie*)MovieB)->puntaje)
+    {
+        return -1;
+    }
+
+    if(((EMovie*)MovieA)->puntaje == ((EMovie*)MovieB)->puntaje)
+    {
+        if(strcmp(((EMovie*)MovieA)->titulo, ((EMovie*)MovieB)->titulo) == 1)
+        {
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
+
+    }
+
+
+    return 0;
+
+
+}
+
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
+
+
+void fgetsToChar(FILE* pFile, int size, char string[size], char To)
+{
+    int i;
+
+    char auxChar;
+
+
+    for(i = 0; auxChar != To && i < size; i++)
+    {
+        auxChar = fgetc(pFile);
+        if(auxChar != To)
+            string[i] = auxChar;
+
+    }
+
+
+
+}
+
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
+
+
+void vaciar(int size, char string[size])
+{
+    int i;
+
+    for(i = 0; i < size; i++)
+        string[i] = '\0';
+
+
 }
