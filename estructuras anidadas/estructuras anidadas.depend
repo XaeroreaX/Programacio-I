@@ -1,0 +1,29 @@
+# depslib dependency file v1.0
+1505736490 source:c:\users\alumno\desktop\estructuras anidadas\empleados.c
+
+1505832058 source:c:\users\alumno\desktop\estructuras anidadas\main.c
+	<stdlib.h>
+	<stdio.h>
+	"funsiones.h"
+	"ejercicios.h"
+
+1505821894 source:e:\estructuras anidadas\main.c
+	<stdlib.h>
+	<stdio.h>
+
+1505832164 source:c:\users\alumno\desktop\estructuras anidadas\funsiones.c
+	<stdlib.h>
+	<stdio.h>
+	"funsiones.h"
+	"ejercicios.h"
+
+1505832102 c:\users\alumno\desktop\estructuras anidadas\funsiones.h
+
+1505832058 source:c:\users\alumno\desktop\estructuras anidadas\ejercicios.c
+	<stdlib.h>
+	<stdio.h>
+	"funsiones.h"
+	"ejercicios.h"
+
+1505833237 c:\users\alumno\desktop\estructuras anidadas\ejercicios.h
+
