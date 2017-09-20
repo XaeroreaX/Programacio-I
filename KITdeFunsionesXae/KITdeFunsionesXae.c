@@ -4,35 +4,14 @@
 #include "KITdeFunsionesXae.h"
 
 
-/**-----------------------------------------------------------------------------------------------------------------------------*/
-
-
-SPersona HarcodearS(char nombre[NT], char telefono[NT], char nacionalidad[N], int edad, int dni, float altura, float peso)
-{
-    SPersona persona;
-    strcpy(persona.nombre, nombre);
-    strcpy(persona.telefono, telefono);
-    strcpy(persona.nacionalidad, nacionalidad);
-    persona.edad = edad;
-    persona.dni = dni;
-    persona.altura = altura;
-    persona.peso = peso;
-
-    return persona;
-}
 
 /**-----------------------------------------------------------------------------------------------------------------------------*/
 
-void HarcodearSArray(SPersona persona[H])
+void HarcodearSArray(struct[])
 {
     int i = 0;
-    char nombre[H][N] = {"Martin", "Roberto", "Claudia", "Camila", "Jesus"};
-    char telefono[H][N] = {"155497-5912","4433-5477","155457-5719","4435-5246","155248-4795"};
-    char nacionalidad[H][N] = {"Argentina", "Estados Unidos", "España", "Africa", "Mexico"};
-    int edad[H] = {22, 66, 15, 33, 42};
-    int dni[H] = {22458975, 66684219, 15785132, 33237981, 42428794};
-    float altura[H] = {1.85, 2.10, 1.63, 1.25, 1.90};
-    float peso[H] = {77.10, 80.63, 61.85, 53.25, 79.10};
+    char nombre[][] = {"Martin", "Roberto", "Claudia", "Camila", "Jesus"};
+    int edad[] = {22, 66, 15, 33, 42};
 
     for(i = 0; i < H; i++)
     {
@@ -51,29 +30,21 @@ void HarcodearSArray(SPersona persona[H])
 /**-----------------------------------------------------------------------------------------------------------------------------*/
 
 
-SPersona cargarPersona(int tam, SPersona persona)
+struct cargarPersona()
 {
     int i = 0;
 
+    struct persona;
+
+    printf("\ningrese el nombre ");
+    cargarCaracter(N, persona.nombre);
 
 
-        printf("\ningrese el nombre de la persona");
-        persona.nombre = cargarCaracter(N, persona.nombre);
-        printf("\ningrese el numero telefonico");
-        gets(persona.telefono);
-        printf("\ningrese la nacionalidad");
-        gets(persona.nacionalidad);
-        printf("\ningrese la edad");
-        scanf("%d", &persona.edad);
-        printf("\ningrese el dni");
-        scanf("%d", &persona.dni);
-        printf("\ningrese la altura");
-        scanf("%f", &persona.altura);
-        printf("\ningrese la peso");
-        scanf("%f", &persona.peso);
+    printf("\ningrese la edad");
+    scanf("%d", &persona.edad);
 
 
-
+    return persona;
 
 
 }
@@ -82,7 +53,7 @@ SPersona cargarPersona(int tam, SPersona persona)
 
 /**-----------------------------------------------------------------------------------------------------------------------------*/
 
-char cargarCaracter(int tam, caracteres[tam])
+char cargarCaracter(int tam, char caracteres[])
 {
     char buffer[1024];
 
@@ -96,18 +67,6 @@ char cargarCaracter(int tam, caracteres[tam])
 
     return caracteres[tam];
 }
-
-
-/**-----------------------------------------------------------------------------------------------------------------------------*/
-
-
-void MostrarS(SPersona persona)
-{
-
-    printf("Nombre:%s----Nacionalidad:%s----Telefono:%s\n------------------------------------\nEdad:%d----DNI:%d----Altura:%f----Peso:%f\n", persona.nombre, persona.nacionalidad, persona.telefono, persona.edad, persona.dni, persona.altura, persona.peso);
-
-}
-
 
 
 /**-----------------------------------------------------------------------------------------------------------------------------*/
@@ -133,36 +92,6 @@ Struct* contructor1(char string[1024], int entero)
 
 
 
-/**-----------------------------------------------------------------------------------------------------------------------------*/
-
-int harcodearSUser(ArrayList* userList)
-{
-    int i, returnAux = DENEID, id[5] = {1, 1001, 1002, 1003, 1004};
-    char nickName[5][50] = {"XaeroreaX", "mr. queen", "camila","Atilio", "pucci"};
-    char password[5][50] = {"master6060", "rey2501", "camila","abel6060", "Made in heaven"};
-    SUser* user;
-
-
-
-    if(user == NULL || userList == NULL) return returnAux;
-
-    for(i = 0; i < 5; i++)
-    {
-
-
-        user = (SUser*) malloc(sizeof(SUser));
-        user->id = id[i];
-
-        strcpy(user->nickName, nickName[i]);
-        strcpy(user->password, password[i]);
-
-        returnAux = userList->add(userList, user);
-        if(returnAux == DENEID) break;
-
-    }
-
-    return returnAux;
-}
 
 
 /**-----------------------------------------------------------------------------------------------------------------------------*/
@@ -178,12 +107,12 @@ int menuAdministrador(ArrayList* movieList)
 
     while(seguir=='s')
         {
-            printf("1- Agregar pelicula\n");
-            printf("2- Borrar pelicula\n");
-            printf("3- Modificar pelicula\n");
-            printf("4- Generar pagina web\n");
-            printf("5- Limpiar la lista de peliculas\n");
+            printf("1- Agregar \n");
+            printf("2- Borrar \n");
+            printf("3- Modificar \n");
+            printf("5- mostrar\n");
             printf("6- Salir\n");
+            printf("ingrese opcion")
 
             scanf("%d",&opcion);
 
@@ -223,18 +152,55 @@ int menuAdministrador(ArrayList* movieList)
                 case 6:
                     seguir = 'n';
                     break;
+                default:
+                    system("cls");
+                    printf("ingreso mal la opcion, por favor ingrese de nuevo");
+                    system("pause");
+                    break;
 
 
             }
-
-            if(movieList->sort(movieList, compareMovie, 1) == DENEID ) printf("ERROR en la funsion sort de arrayList de EMovie");
-            movieListToFile(movieList);
             system("cls");
 
         }
     returnAux = OK;
     return returnAux;
 }
+
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
+
+
+
+int harcodearSUser(ArrayList* userList)
+{
+    int i, returnAux = DENEID, id[5] = {1, 1001, 1002, 1003, 1004};
+    char nickName[5][50] = {"XaeroreaX", "mr. queen", "camila","Atilio", "pucci"};
+    char password[5][50] = {"master6060", "rey2501", "camila","abel6060", "Made in heaven"};
+    SUser* user;
+
+
+
+    if(user == NULL || userList == NULL) return returnAux;
+
+    for(i = 0; i < 5; i++)
+    {
+
+
+        user = (SUser*) malloc(sizeof(SUser));
+        user->id = id[i];
+
+        strcpy(user->nickName, nickName[i]);
+        strcpy(user->password, password[i]);
+
+        returnAux = userList->add(userList, user);
+        if(returnAux == DENEID) break;
+
+    }
+
+    return returnAux;
+}
+
 
 /**-----------------------------------------------------------------------------------------------------------------------------*/
 
