@@ -1,10 +1,16 @@
 
 
-void showCancionesInterprete(eCancion canciones[], eInterprete interpretes[], int sizeC, int sizeI);
+void showArtistasConMasCanciones(eCancion canciones[], eInterprete interpretes[], int sizeC, int sizeI);
 
-int selectInterprete(eInterprete interpretes[], int size);
+int showDuracionInterprete(int, eCancion[], int);
 
-void showTable(eCancion canciones[], eInterprete interpretes[], int sizeC, int sizeI);
-int showInterprete(int idInterprete, eInterprete interprete[], int sizeI);
+int showInterpreteNacionalidad(eCancion[], eInterprete[],int, int);
 
-void showDuracion(int duracion);
+void showCancionesInterprete(eCancion canciones[], int , int);
+
+int selectInterprete(eInterprete[], int);
+
+void showTable(eCancion[], eInterprete[], int, int);
+int showInterprete(int, eInterprete[], int);
+
+void showDuracion(int);

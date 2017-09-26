@@ -128,7 +128,7 @@ int getId(eInterprete arrayInterpretes[], int size)
     return returnAux;
 }
 
-
+/*
 eCancion cargarPersona(eCancion arrayCanciones[], int sizeC)
 {
     int i = 0;
@@ -137,7 +137,7 @@ eCancion cargarPersona(eCancion arrayCanciones[], int sizeC)
     char TituloCancion[30];
     int idInterprete;
     int duracion;
-    int flagAlta;*/
+    int flagAlta;
 
         canciones.idCancion = getIdC(arrayCanciones, sizeC);
         printf("\ningrese el nombre de la cancion");
@@ -152,7 +152,7 @@ eCancion cargarPersona(eCancion arrayCanciones[], int sizeC)
 
 }
 
-
+*/
 int getIdI(eInterprete arrayInterpretes[], int size)
 {
     int i, returnAux = DENEID;
@@ -265,6 +265,7 @@ void cargarCaracter(int tam, char caracteres[])
 {
     char buffer[1024];
 
+    fflush(stdin);
     gets(buffer);
     while(strlen(buffer) > tam)
     {

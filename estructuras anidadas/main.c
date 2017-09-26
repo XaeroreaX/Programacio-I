@@ -5,7 +5,7 @@
 #define TAM 10
 #define OK 0
 #define DENEID -1
-
+/*duracion de todo los temas y el artista con mas canciones y todos los artistas de una nacionalidad*/
 
 int main()
 {
@@ -29,8 +29,25 @@ int main()
     system("pause");
 
     system("cls");
-    showCancionesInterprete(canciones, interpretes, TAM, TAM);
+    i = selectInterprete(interpretes, TAM);
+    showCancionesInterprete(canciones, interpretes[i].idInterprete, TAM);
     system("pause");
+
+
+    system("cls");
+    if(showInterpreteNacionalidad(canciones, interpretes, TAM, TAM) == DENEID) printf("no se encontraron interpretes");
+    system("pause");
+
+    system("cls");
+    i = selectInterprete(interpretes, TAM);
+
+    showDuracionInterprete(interpretes[i].idInterprete, canciones, TAM);
+    system("pause");
+
+    system("cls");
+    showArtistasConMasCanciones(canciones, interpretes, TAM, TAM);
+    system("pause");
+
  /*
     do{
 
