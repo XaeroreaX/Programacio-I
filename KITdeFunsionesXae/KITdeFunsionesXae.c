@@ -4,117 +4,7 @@
 #include "KITdeFunsionesXae.h"
 
 
-
-/**-----------------------------------------------------------------------------------------------------------------------------*/
-
-void HarcodearSArray(struct[])
-{
-    int i = 0;
-    char nombre[][] = {"Martin", "Roberto", "Claudia", "Camila", "Jesus"};
-    int edad[] = {22, 66, 15, 33, 42};
-
-    for(i = 0; i < H; i++)
-    {
-        strcpy(persona[i].nombre, nombre[i]);
-        strcpy(persona[i].telefono, telefono[i]);
-        strcpy(persona[i].nacionalidad, nacionalidad[i]);
-        persona[i].edad = edad[i];
-        persona[i].dni = dni[i];
-        persona[i].altura = altura[i];
-        persona[i].peso = peso[i];
-    }
-
-}
-
-
-/**-----------------------------------------------------------------------------------------------------------------------------*/
-
-
-struct cargarPersona()
-{
-    int i = 0;
-
-    struct persona;
-
-    printf("\ningrese el nombre ");
-    cargarCaracter(N, persona.nombre);
-
-
-    printf("\ningrese la edad");
-    scanf("%d", &persona.edad);
-
-
-    return persona;
-
-
-}
-
-
-
-/**-----------------------------------------------------------------------------------------------------------------------------*/
-
-char cargarCaracter(int tam, char caracteres[])
-{
-    char buffer[1024];
-
-    gets(buffer);
-    while(strlen(buffer) > tam)
-    {
-        printf("ingreso mal la cadena de caracteres, ingrese de nuevo");
-        gets(buffer);
-    }
-    strcpy(caracteres, buffer);
-
-    return caracteres[tam];
-}
-
-
-/**-----------------------------------------------------------------------------------------------------------------------------*/
-
-int numValidado(char messages[], int ground, int top)
-{
-    int numero;
-    fflush(stdin);
-
-    printf("%s:",messages);
-    scanf("%d", &numero);
-
-    while(numero < ground || numero > top)
-    {
-        printf("el numero ingresado no es valido, por favor ingrese de nuevo");
-        fflush(stdin);
-        scanf("%d", &numero);
-    }
-
-    return numero;
-}
-
-
-/**-----------------------------------------------------------------------------------------------------------------------------*/
-
-Struct* contructor1(char string[1024], int entero)
-{
-    int len;
-    Struct* construir;
-
-    construir = (Struct*) malloc(sizeof(Struct));
-
-    if(construir == NULL) return construir;
-
-    construir->string = (char*) malloc(sizeof(char)*(strlen(string) + 1));
-
-
-    strcpy(construir->string, string);
-    construir->entero = entero;
-
-    return construir;
-
-}
-
-
-
-/**-----------------------------------------------------------------------------------------------------------------------------*/
-
+/**-----------------------------------------------------------CASCARA------------------------------------------------------------------*/
 
 int menuAdministrador(ArrayList* movieList)
 {
@@ -187,9 +77,29 @@ int menuAdministrador(ArrayList* movieList)
 }
 
 
-/**-----------------------------------------------------------------------------------------------------------------------------*/
+/**-----------------------------------------------------HARCODEO------------------------------------------------------------------------*/
+
+void HarcodearSArray(struct[])
+{
+    int i = 0;
+    char nombre[][] = {"Martin", "Roberto", "Claudia", "Camila", "Jesus"};
+    int edad[] = {22, 66, 15, 33, 42};
+
+    for(i = 0; i < H; i++)
+    {
+        strcpy(persona[i].nombre, nombre[i]);
+        strcpy(persona[i].telefono, telefono[i]);
+        strcpy(persona[i].nacionalidad, nacionalidad[i]);
+        persona[i].edad = edad[i];
+        persona[i].dni = dni[i];
+        persona[i].altura = altura[i];
+        persona[i].peso = peso[i];
+    }
+
+}
 
 
+/**------------------------------------------------------------------------*/
 
 int harcodearSUser(ArrayList* userList)
 {
@@ -221,7 +131,74 @@ int harcodearSUser(ArrayList* userList)
 }
 
 
-/**-----------------------------------------------------------------------------------------------------------------------------*/
+
+
+/**---------------------------------------------------------ALTA--------------------------------------------------------------------*/
+
+
+struct cargarPersona()
+{
+    int i = 0;
+
+    struct persona;
+
+    printf("\ningrese el nombre ");
+    cargarCaracter(N, persona.nombre);
+
+
+    printf("\ningrese la edad");
+    scanf("%d", &persona.edad);
+
+
+    return persona;
+
+
+}
+
+
+
+/**---------------------------------------------------------------*/
+
+char cargarCaracter(int tam, char caracteres[])
+{
+    char buffer[1024];
+
+    fflush(stdin);
+    gets(buffer);
+    while(strlen(buffer) > tam)
+    {
+        printf("ingreso mal la cadena de caracteres, ingrese de nuevo");
+        fflush(stdin);
+        gets(buffer);
+    }
+    strcpy(caracteres, buffer);
+
+    return caracteres[tam];
+}
+
+
+/**---------------------------------------------------------------*/
+
+int numValidado(char messages[], int ground, int top)
+{
+    int numero;
+    fflush(stdin);
+
+    printf("%s:",messages);
+    scanf("%d", &numero);
+
+    while(numero < ground || numero > top)
+    {
+        printf("el numero ingresado no es valido, por favor ingrese de nuevo");
+        fflush(stdin);
+        scanf("%d", &numero);
+    }
+
+    return numero;
+}
+
+
+/**---------------------------------------------------------------*/
 
 int charAddDinamic(char* caracter)
 {
@@ -248,7 +225,44 @@ int charAddDinamic(char* caracter)
     return returnAux;
 }
 
-/**-----------------------------------------------------------------------------------------------------------------------------*/
+/**---------------------------------------------------------------*/
+
+void vaciar(int size, char string[size])
+{
+    int i;
+
+    for(i = 0; i < size; i++)
+        string[i] = '\0';
+
+
+}
+
+/**-------------------------------------------------CONSTRUCTOR----------------------------------------------------------------------------*/
+
+Struct* contructor1(char string[1024], int entero)
+{
+    int len;
+    Struct* construir;
+
+    construir = (Struct*) malloc(sizeof(Struct));
+
+    if(construir == NULL) return construir;
+
+    construir->string = (char*) malloc(sizeof(char)*(strlen(string) + 1));
+
+
+    strcpy(construir->string, string);
+    construir->entero = entero;
+
+    return construir;
+
+}
+
+
+
+
+
+/**----------------------------------------------------ARCHIVOS-------------------------------------------------------------------------*/
 
 int userListToFile(ArrayList* userList)
 {
@@ -283,7 +297,7 @@ int userListToFile(ArrayList* userList)
 }
 
 
-/**-----------------------------------------------------------------------------------------------------------------------------*/
+/**-------------------------------------------------------------*/
 
 int fileToMovieList(ArrayList* movieList)
 {
@@ -326,7 +340,32 @@ int fileToMovieList(ArrayList* movieList)
     return returnAux;
 }
 
-/**-----------------------------------------------------------------------------------------------------------------------------*/
+
+/**-------------------------------------------------------------*/
+
+
+void fgetsToChar(FILE* pFile, int size, char string[size], char To)
+{
+    int i;
+
+    char auxChar;
+
+
+    for(i = 0; auxChar != To && i < size; i++)
+    {
+        auxChar = fgetc(pFile);
+        if(auxChar != To)
+            string[i] = auxChar;
+
+    }
+
+
+
+}
+
+
+
+/**---------------------------------------------------------SORT--------------------------------------------------------------------*/
 
 int compareMovie(void* MovieA, void* MovieB)
 {
@@ -362,38 +401,5 @@ int compareMovie(void* MovieA, void* MovieB)
 }
 
 
-/**-----------------------------------------------------------------------------------------------------------------------------*/
 
 
-void fgetsToChar(FILE* pFile, int size, char string[size], char To)
-{
-    int i;
-
-    char auxChar;
-
-
-    for(i = 0; auxChar != To && i < size; i++)
-    {
-        auxChar = fgetc(pFile);
-        if(auxChar != To)
-            string[i] = auxChar;
-
-    }
-
-
-
-}
-
-
-/**-----------------------------------------------------------------------------------------------------------------------------*/
-
-
-void vaciar(int size, char string[size])
-{
-    int i;
-
-    for(i = 0; i < size; i++)
-        string[i] = '\0';
-
-
-}
