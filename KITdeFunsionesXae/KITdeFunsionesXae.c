@@ -71,6 +71,27 @@ char cargarCaracter(int tam, char caracteres[])
 
 /**-----------------------------------------------------------------------------------------------------------------------------*/
 
+int numValidado(char messages[], int ground, int top)
+{
+    int numero;
+    fflush(stdin);
+
+    printf("%s:",messages);
+    scanf("%d", &numero);
+
+    while(numero < ground || numero > top)
+    {
+        printf("el numero ingresado no es valido, por favor ingrese de nuevo");
+        fflush(stdin);
+        scanf("%d", &numero);
+    }
+
+    return numero;
+}
+
+
+/**-----------------------------------------------------------------------------------------------------------------------------*/
+
 Struct* contructor1(char string[1024], int entero)
 {
     int len;
@@ -89,8 +110,6 @@ Struct* contructor1(char string[1024], int entero)
     return construir;
 
 }
-
-
 
 
 
