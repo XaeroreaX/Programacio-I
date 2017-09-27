@@ -1,0 +1,24 @@
+# depslib dependency file v1.0
+1506534749 source:c:\users\public\cv\programacio-i-master\ejercicio rapido\cascara.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"cascara.h"
+	"funsiones.h"
+
+1506531144 c:\users\public\cv\programacio-i-master\ejercicio rapido\cascara.h
+
+1506534739 c:\users\public\cv\programacio-i-master\ejercicio rapido\funsiones.h
+
+1506536354 source:c:\users\public\cv\programacio-i-master\ejercicio rapido\funsiones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funsiones.h"
+
+1506535921 source:c:\users\public\cv\programacio-i-master\ejercicio rapido\main.c
+	<stdio.h>
+	<stdlib.h>
+	"cascara.h"
+	"funsiones.h"
+
