@@ -6,7 +6,7 @@
 
 /**-----------------------------------------------------------CASCARA------------------------------------------------------------------*/
 
-int menuAdministrador(ArrayList* movieList)
+int cascara(ArrayList* movieList)
 {
 
     char seguir='s';
@@ -136,7 +136,7 @@ int harcodearSUser(ArrayList* userList)
 /**---------------------------------------------------------ALTA--------------------------------------------------------------------*/
 
 
-struct cargarPersona()
+struct cargarS()
 {
     int i = 0;
 
@@ -152,6 +152,65 @@ struct cargarPersona()
 
     return persona;
 
+
+}
+
+
+/**------------------------------------------------------------------------*/
+
+sSong addS(sSong canciones[], int size)
+{
+    int i = 0;
+
+    sSong song;
+
+    song.idCansion = buscarEspcioSong(canciones, size);
+
+    printf("\ningrese el nombre");
+    cargarCaracter(30, song.nombre);
+
+
+    printf("\ningrese la duracion");
+    song.duracion = numValidado("\ningrese la duracion", 0 , 3600);
+
+
+    return song;
+
+
+}
+
+/**------------------------------------------------------------------------*/
+
+int getId(sSong canciones[], int size)
+{
+
+    int i, id = 1000;
+
+    for(i = 0; i < size; i++)
+    {
+        if(canciones[i].flagAlta == OK)
+        {
+            id = canciones[i].idCansion + 1;
+
+        }
+        else break;
+
+    }
+
+    return id;
+}
+
+/**---------------------------------------------------------------*/
+
+int buscarEspcioStruct(sSong canciones[], int size)
+{
+    int i;
+
+    for(i = 0; i<size; i++) if(canciones[i].flagAlta == DENEID) break;
+
+    if(i == size) i = DENEID;
+
+    return i;
 
 }
 
@@ -239,6 +298,22 @@ void vaciar(int size, char string[size])
 
 /**-------------------------------------------------CONSTRUCTOR----------------------------------------------------------------------------*/
 
+
+void VaciarStruct(sSong canciones[], int size)
+{
+    int i;
+
+    for(i = 0; i < size; i++)
+    {
+        canciones[i].flagAlta = DENEID;
+    }
+
+
+}
+
+
+/**---------------------------------------------------------------*/
+
 Struct* contructor1(char string[1024], int entero)
 {
     int len;
@@ -264,7 +339,7 @@ Struct* contructor1(char string[1024], int entero)
 
 /**----------------------------------------------------ARCHIVOS-------------------------------------------------------------------------*/
 
-int userListToFile(ArrayList* userList)
+int ListToFile()
 {
     FILE* file;
     int returnAux = DENEID, index;
@@ -299,7 +374,7 @@ int userListToFile(ArrayList* userList)
 
 /**-------------------------------------------------------------*/
 
-int fileToMovieList(ArrayList* movieList)
+int fileToList(ArrayList* movieList)
 {
     FILE* file;
     int returnAux = DENEID, index, size;
