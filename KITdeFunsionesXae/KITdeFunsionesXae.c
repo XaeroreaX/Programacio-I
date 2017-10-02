@@ -132,6 +132,39 @@ int harcodearSUser(ArrayList* userList)
 
 
 
+/**-----------------------------------------------------BURBUJEO------------------------------------------------------------------------*/
+
+void burbujeo()
+{
+
+    for(i = 0; i < sizeC - 1; i++)
+        {
+            if(autosO[i].flagAlta == OK)
+            {
+                for(j = 0; j < sizeC; j++)
+                {
+
+                    if(autosO[j].flagAlta == OK)
+                    {
+                        if(strcmp(autosO[i].modelo, autosO[j].modelo) < 0)
+                        {
+                            aux = autosO[i];
+                            autosO[i] = autosO[j];
+                            autosO[j] = aux;
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+
+}
+
+
+
+
 
 /**---------------------------------------------------------ALTA--------------------------------------------------------------------*/
 
@@ -296,6 +329,57 @@ void vaciar(int size, char string[size])
 
 }
 
+/**-------------------------------------------------baja----------------------------------------------------------------------------*/
+
+
+int getIndex(sAuto autos[], int sizeA)
+{
+    int i, returnAux = DENEID;
+
+    for(i = 0; i < sizeA; i++)
+    {
+        if(autos[i].flagAlta == OK)
+        {
+            printf("%d)%s\n",(i+1), autos[i].patente);
+        }
+
+    }
+
+    printf("ingrese opcion:");
+    scanf("%d", &i);
+    i--;
+
+    if(autos[i].flagAlta == OK) returnAux = i;
+
+    return returnAux;
+}
+
+
+/**---------------------------------------------------------------*/
+
+int bajaSauto(sAuto autos[], int sizeA)
+{
+    int i, index, returnAux = DENEID;
+    printf("elija cual es el auto que va a dar de baja");
+
+    index = getIndex(autos, sizeA);
+
+    if(index != DENEID)
+    {
+        autos[index].flagAlta = DENEID;
+        returnAux = OK;
+
+        for(i = index; i < sizeA - 1; i++)
+        {
+            autos[i] = autos[i+1];
+        }
+        autos[i].flagAlta = DENEID;
+    }
+
+    return returnAux;
+}
+
+
 /**-------------------------------------------------CONSTRUCTOR----------------------------------------------------------------------------*/
 
 
@@ -333,7 +417,18 @@ Struct* contructor1(char string[1024], int entero)
 
 }
 
+/**------------------------------------------------------micelaneos--------------------------------------------------------------*/
 
+int indexIdsAuto(int idDuenio, sAuto autos[], int sizeA)
+{
+    int i;
+
+    for(i = 0; i < sizeA; i++)
+        if(idDuenio == autos[i].idDuenio) break;
+
+
+    return i;
+}
 
 
 
