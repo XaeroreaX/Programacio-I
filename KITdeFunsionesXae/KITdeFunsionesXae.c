@@ -431,6 +431,43 @@ int indexIdsAuto(int idDuenio, sAuto autos[], int sizeA)
 }
 
 
+void showDataSAuto(sAuto autos[], int sizeA)
+{
+    int i;
+
+    for(i = 0; i < sizeA; i++)
+    {
+        if(autos[i].flagAlta == OK)
+        {
+
+
+            printf("patente:%s---modelo:%s---marca:", autos[i].patente, autos[i].modelo);
+
+/*
+            switch(autos[i].marca)
+            {
+                case FIAT:
+                    printf("fiat\n");
+                    break;
+
+                case PEUGEOT:
+                    printf("peugeot\n");
+                    break;
+                case FORD:
+                    printf("ford\n");
+                    break;
+                case OTROS:
+                    printf("otros\n");
+                    break;
+*/
+            }
+        }
+    }
+
+
+}
+
+
 
 /**----------------------------------------------------ARCHIVOS-------------------------------------------------------------------------*/
 
