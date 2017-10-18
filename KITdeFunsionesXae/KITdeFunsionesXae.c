@@ -548,6 +548,40 @@ int fileToList(ArrayList* movieList)
 }
 
 
+int StructText(structArray** array, int size)
+{
+   char Text1[500], Text2[500], Text3[500], Text4[500];
+   struct producto;
+   int cont=0;
+
+   FILE * pFile;
+
+   pFile = fopen ("productos.csv", "r");
+   //leer titulo
+      fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", codigo, descripcion, categoria, precio);
+
+   while(!feof(pFile))
+   {
+
+
+
+       fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", Text1, Text2, Text3, Text4);
+
+       producto.codigo = atoi(Text1);
+       producto.categoria = atoi(Text2);
+       strcpy(producto.descripcion, Text3);
+       producto.precio = atof(Text4);
+
+     //  printf("TEXTO : %s - %s - %s - %s\n", codigo, descripcion, categoria, precio);
+        array[cont] = producto;
+       //printf("STRUCT: %d - %s - %d - %.2f\n", producto.codigo, producto.descripcion, producto.categoria, producto.precio);
+        cont++;
+   }
+
+      fclose(pFile);
+
+    return cont;
+}
 /**-------------------------------------------------------------*/
 
 
