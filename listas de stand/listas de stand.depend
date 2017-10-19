@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1508443050 source:c:\users\public\cv\programacio-i-master\listas de stand\cascara.c
+	<stdio.h>
+	<stdlib.h>
+	"cascara.h"
+
+1508444793 source:c:\users\public\cv\programacio-i-master\listas de stand\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"cascara.h"
+	"funciones.h"
+
+1508444727 c:\users\public\cv\programacio-i-master\listas de stand\funciones.h
+
+1508444364 source:c:\users\public\cv\programacio-i-master\listas de stand\main.c
+	<stdio.h>
+	<stdlib.h>
+	"cascara.h"
+	"funciones.h"
+
+1508350386 source:c:\users\public\cv\programacio-i-master\listas de stand\load&save.c
+
+1508442545 c:\users\public\cv\programacio-i-master\listas de stand\cascara.h
+
