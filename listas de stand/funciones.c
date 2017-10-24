@@ -8,23 +8,21 @@
 Sstand** newArrayStand(int* size, int* reserveSize)
 {
 
-
+    Sstand** stands;
 
 
     stands = (Sstand**) malloc(sizeof(Sstand*)*10);
-    if(stands == NULL) return returnAux ;
+    if(stands == NULL) return stands;
 
-    size = constructInt(0);
-    if(size == NULL) return NULL;
+   *size = 0;
 
 
-    reserveSize = constructInt(10);
-    if(reserveSize == NULL) return NULL;
+   *reserveSize = 10;
 
 
 
 
-    return returnAux;
+    return stands;
 
 }
 
@@ -33,7 +31,7 @@ int* constructInt(int valor)
     int* num;
 
     num = (int*) malloc(sizeof(int));
-    if(num != NULL) *num = 0;
+    if(num != NULL) *num = valor;
 
 
     return num;

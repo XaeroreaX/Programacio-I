@@ -8,12 +8,12 @@
 int main()
 {
     int option = 0;
-    int* size;
-    int* reserveSize;
+    int size;
+    int reserveSize;
 
     Sstand** stands;
 
-    stands = newArrayStand(size, reserveSize)
+    stands = newArrayStand(&size, &reserveSize);
     if(stands == NULL)
     {
         printf("no se encotro espacio!!!");
@@ -21,7 +21,7 @@ int main()
     }
 
 
-    printf("%d-%d", *size, *reserveSize);
+ //   printf("%d-%d", size, reserveSize);
 
     while(option != 5)
     {
@@ -42,7 +42,7 @@ int main()
             case 1:
                 system("cls");
 
-                if(altaStand(stands, size, reserveSize) == DENEID) printf("no se encotro espacio!!!");
+                if(altaStand(stands, &size, &reserveSize) == DENEID) printf("no se encotro espacio!!!");
 
                 system("cls");
                 break;

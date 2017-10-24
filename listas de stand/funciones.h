@@ -10,7 +10,7 @@
 #define DENEID -1
 
 
-int newArrayStand(Sstand** stands, int* size, int* reserveSize);
+Sstand** newArrayStand(int* size, int* reserveSize);
 
 int* constructInt(int valor);
 
