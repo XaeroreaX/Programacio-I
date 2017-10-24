@@ -14,9 +14,18 @@ int altaStand(Sstand** stands, int* size, int* reserverSize)
 
     if(stand != NULL)
     {
-        i = *size;
         returnAux = OK;
-        *(stands + i) = stand;
+
+        i = *size;
+
+        if(*size == *reserverSize)
+        {
+            returnAux = resizeUp(stands, reserverSize);
+        }
+
+
+        if(returnAux == OK) *(stands + i) = stand;
+        *size = i + 1;
 
     }
 

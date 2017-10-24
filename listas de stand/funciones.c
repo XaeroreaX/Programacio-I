@@ -74,10 +74,7 @@ Sstand* cargarStand(int id)
     int  saga, chapter;
     char name[1024], descripcion[1024], linkImagen[1024];
 
-    printf("ingrese el id: ");
-    scanf("%d", &id);
 
-    fflush(stdin);
 
     printf("ingrese el nombre:");
 
@@ -108,6 +105,32 @@ Sstand* cargarStand(int id)
     return stand;
 }
 
+
+int resizeUp(Sstand** stands, int* reserverSize)
+{
+    int returnAux = DENEID, i;
+
+    Sstand** aux;
+
+    if(stands == NULL || reserverSize==NULL) return returnAux;
+
+    i = *reserverSize;
+
+    aux = (Sstand**) realloc(stands, sizeof(Sstand*)* (i + 10));
+
+    if(aux != NULL)
+    {
+        returnAux = OK;
+
+        *reserverSize = i + 10;
+
+        stands = aux;
+
+
+    }
+
+    return returnAux;
+}
 
 
 char* dinamicCharacter(char character[])
