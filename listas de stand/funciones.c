@@ -38,7 +38,7 @@ int* constructInt(int valor)
 }
 
 
-Sstand* constructParam(int id, char name[], char descripcion[], int saga, int chapter, char linkImagen[])
+Sstand* constructParam(int id, char name[], char descripcion[], char reference[], int saga, int chapter, char linkImagen[])
 {
     Sstand* stand;
 
@@ -52,6 +52,9 @@ Sstand* constructParam(int id, char name[], char descripcion[], int saga, int ch
         stand->chapter = chapter;
         stand->name = dinamicCharacter(name);
         if(stand->name == NULL) return NULL;
+
+        stand->reference = dinamicCharacter(reference);
+        if(stand->reference == NULL) return NULL;
         stand->descripcion = dinamicCharacter(descripcion);
         if(stand->descripcion == NULL) return NULL;
         stand->linkImagen = dinamicCharacter(linkImagen);
@@ -72,7 +75,7 @@ Sstand* cargarStand(int id)
     Sstand* stand;
 
     int  saga, chapter;
-    char name[1024], descripcion[1024], linkImagen[1024];
+    char name[1024], descripcion[1024], reference[1024], linkImagen[1024];
 
 
 
@@ -86,8 +89,16 @@ Sstand* cargarStand(int id)
     fflush(stdin);
 
     cargarCaracter(1024, descripcion);
-    printf("ingrese la saga:");
 
+
+    printf("ingrese el referencia:");
+
+    fflush(stdin);
+
+    cargarCaracter(1024, reference);
+
+
+    printf("ingrese la saga:");
     fflush(stdin);
     scanf("%d", &saga);
     printf("ingrese el capitulo:");
@@ -99,7 +110,7 @@ Sstand* cargarStand(int id)
     fflush(stdin);
     cargarCaracter(1024, linkImagen);
 
-    stand = constructParam(id, name, descripcion, saga, chapter, linkImagen);
+    stand = constructParam(id, name, descripcion,reference, saga, chapter, linkImagen);
 
 
     return stand;

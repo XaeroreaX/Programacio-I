@@ -4,22 +4,27 @@
 	<stdlib.h>
 	"cascara.h"
 
-1508444793 source:c:\users\public\cv\programacio-i-master\listas de stand\funciones.c
+1508944680 source:c:\users\public\cv\programacio-i-master\listas de stand\funciones.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"cascara.h"
 	"funciones.h"
 
-1508864488 c:\users\public\cv\programacio-i-master\listas de stand\funciones.h
+1508944578 c:\users\public\cv\programacio-i-master\listas de stand\funciones.h
 
-1508842046 source:c:\users\public\cv\programacio-i-master\listas de stand\main.c
+1508944680 source:c:\users\public\cv\programacio-i-master\listas de stand\main.c
 	<stdio.h>
 	<stdlib.h>
 	"cascara.h"
 	"funciones.h"
+	"Load&Save.h"
 
-1508842046 source:c:\users\public\cv\programacio-i-master\listas de stand\load&save.c
+1508945267 source:c:\users\public\cv\programacio-i-master\listas de stand\load&save.c
+	<stdio.h>
+	<stdlib.h>
+	"cascara.h"
+	"Load&Save.h"
 
 1508842046 c:\users\public\cv\programacio-i-master\listas de stand\cascara.h
 
@@ -46,4 +51,6 @@
 	<stdlib.h>
 	"cascara.h"
 	"funciones.h"
+
+1508942357 c:\users\public\cv\programacio-i-master\listas de stand\load&save.h
 

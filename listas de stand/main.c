@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "cascara.h"
 #include "funciones.h"
-
+#include "Load&Save.h"
 
 
 int main()
@@ -20,7 +20,7 @@ int main()
         option = 5;
     }
 
-
+    if(LoadStand(stands, &size, &reserveSize) == DENEID) printf("no pudo abrir el archivo\n");
  //   printf("%d-%d", size, reserveSize);
 
     while(option != 5)
@@ -76,6 +76,8 @@ int main()
 
 
     }
+
+    if(saveStand(stands, &size)) printf("error al salvar el archivo");
 
     return 0;
 }
