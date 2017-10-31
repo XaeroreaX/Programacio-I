@@ -21,7 +21,7 @@ Sstand* constructParam(int id, char name[], char descripcion[], char[], int saga
 Sstand* cargarStand(int id);
 
 
-int resizeUp(Sstand** stands, int* reserverSize);
+int getId(ArrayList* standList);
 
 
 char* dinamicCharacter(char character[]);

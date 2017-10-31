@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "ArrayList.h"
 #include "cascara.h"
 #include "funciones.h"
 
@@ -117,30 +118,24 @@ Sstand* cargarStand(int id)
 }
 
 
-int resizeUp(Sstand** stands, int* reserverSize)
+int getId(ArrayList* standList)
 {
-    int returnAux = DENEID, i;
+    int i, id = DENEID;
+    Sstand* stand;
 
-    Sstand** aux;
+    if(standList == NULL) return id;
 
-    if(stands == NULL || reserverSize==NULL) return returnAux;
-
-    i = *reserverSize;
-
-    aux = (Sstand**) realloc(stands, sizeof(Sstand*)* (i + 10));
-
-    if(aux != NULL)
+    id = 1000;
+    for(i = 0; i < standList->len(standList); i++)
     {
-        returnAux = OK;
+        stand = standList->get(standList, i);
+        id = stand->id +1;
 
-        *reserverSize = i + 10;
-
-        stands = aux;
 
 
     }
 
-    return returnAux;
+    return id;
 }
 
 

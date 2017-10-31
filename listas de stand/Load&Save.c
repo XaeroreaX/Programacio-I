@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "ArrayList.h"
 #include "cascara.h"
 #include "Load&Save.h"
 
 
-int LoadStand(Sstand** stands, int* size, int* reseverSize)
+int LoadStand(ArrayList* standList)
 {
     int flag = OK, returnAux = DENEID, i;
     char id[10], name[500], reference[500], descripcion[1024], saga[10], chapter[10], linkImagen[1024];
@@ -15,30 +16,25 @@ int LoadStand(Sstand** stands, int* size, int* reseverSize)
 
     pFile = fopen ("dataStand.csv", "r");
 
-    if(pFile == NULL || stands == NULL) return returnAux;
+    if(pFile == NULL || standList == NULL) return returnAux;
     returnAux = OK;
    //leer titulo
-    fscanf(pFile, "%[^,]@%[^,]@%[^,]@%[^,]@%[^,]@%[^,]@%[^\n]\n", id, name, reference, descripcion, saga, chapter, linkImagen);
+    fscanf(pFile, "%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^\n]\n", id, name, reference, descripcion, saga, chapter, linkImagen);
 
-    if(ferror(pFile)) return returnAux;
-
+    //printf("hola");
     while(!feof(pFile))
     {
-        if(*size == *reseverSize) flag = resizeUp(stands, reseverSize);
+
 
         if(flag != DENEID)
         {
 
-            fscanf(pFile, "%[^,]@%[^,]@%[^,]@%[^,]@%[^,]@%[^,]@%[^\n]\n", id, name, reference, descripcion, saga, chapter, linkImagen);
+            fscanf(pFile, "%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^\n]\n", id, name, reference, descripcion, saga, chapter, linkImagen);
 
             stand = constructParam(atoi(id), name, reference, descripcion, atoi(saga), atoi(chapter), linkImagen);
-            i = *size;
 
-            *(stands+i) = stand;
-
-            *size = i + 1;
-
-            returnAux = *size;
+            if(standList->add(standList, stand) == OK)
+                returnAux = standList->len(standList);
 
         }
     }
@@ -49,7 +45,7 @@ int LoadStand(Sstand** stands, int* size, int* reseverSize)
 }
 
 
-int saveStand(Sstand** stands, int *size)
+int saveStand(ArrayList* standList)
 {
     int i, returnAux = DENEID;
     Sstand* stand;
@@ -58,14 +54,14 @@ int saveStand(Sstand** stands, int *size)
 
     pFile = fopen("dataStand.csv", "w+");
 
-    if(stands == NULL || pFile == NULL) return returnAux;
+    if(standList == NULL || pFile == NULL) return returnAux;
 
     fprintf(pFile, "id@name@reference@descripcion@saga@chapter@linkImagen\n");
     returnAux = OK;
-    for(i = 0; i < *size; i++)
+    for(i = 0; i < standList->len(standList); i++)
     {
 
-        stand = *(stands+i);
+        stand = standList->get(standList, i);
 
         fprintf(pFile, "%d@%s@%s@%s@%d@%d@%s\n", stand->id, stand->name, stand->reference,stand->descripcion, stand->saga, stand->chapter, stand->linkImagen);
 

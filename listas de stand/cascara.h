@@ -28,6 +28,6 @@ typedef struct
 
 
 
-int altaStand(Sstand** stands, int* size, int* reserverSize);
+int altaStand(ArrayList*);
 
 

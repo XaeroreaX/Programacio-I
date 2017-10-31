@@ -1,31 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "ArrayList.h"
 #include "cascara.h"
 
 
-int altaStand(Sstand** stands, int* size, int* reserverSize)
+int altaStand(ArrayList* standList)
 {
     Sstand* stand;
-    int i, returnAux = DENEID;
+    int i, returnAux = DENEID, id;
+
+    if(standList == NULL) return returnAux;
 
 
+    id = getId(standList);
 
-    stand = cargarStand(1000);
+    stand = cargarStand(id);
 
     if(stand != NULL)
     {
-        returnAux = OK;
-
-        i = *size;
-
-        if(*size == *reserverSize)
-        {
-            returnAux = resizeUp(stands, reserverSize);
-        }
 
 
-        if(returnAux == OK) *(stands + i) = stand;
-        *size = i + 1;
+        returnAux = standList->add(standList, stand);
+
 
     }
 

@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+#include "ArrayList.h"
 #include "cascara.h"
 #include "funciones.h"
 #include "Load&Save.h"
@@ -8,19 +10,12 @@
 int main()
 {
     int option = 0;
-    int size;
-    int reserveSize;
+    char seleccion;
+    ArrayList* standList;
 
-    Sstand** stands;
+    standList = al_newArrayList();
 
-    stands = newArrayStand(&size, &reserveSize);
-    if(stands == NULL)
-    {
-        printf("no se encotro espacio!!!");
-        option = 5;
-    }
-
-    if(LoadStand(stands, &size, &reserveSize) == DENEID) printf("no pudo abrir el archivo\n");
+    if(LoadStand(standList) == DENEID) printf("no pudo abrir el archivo\n");
  //   printf("%d-%d", size, reserveSize);
 
     while(option != 5)
@@ -42,7 +37,7 @@ int main()
             case 1:
                 system("cls");
 
-                if(altaStand(stands, &size, &reserveSize) == DENEID) printf("no se encotro espacio!!!");
+                if(altaStand(standList) == DENEID) printf("no se encotro espacio!!!");
 
                 system("cls");
                 break;
@@ -63,7 +58,7 @@ int main()
                 break;
 
             case 5:
-
+                system("cls");
 
                 break;
 
@@ -77,7 +72,14 @@ int main()
 
     }
 
-    if(saveStand(stands, &size)) printf("error al salvar el archivo");
 
+    printf("desea guardar el progreso? y/n");
+    fflush(stdin);
+    seleccion = getchar();
+    if(seleccion == 'y')
+    {
+        //printf("hola");
+        if(saveStand(standList)) printf("error al salvar el archivo");
+    }
     return 0;
 }
