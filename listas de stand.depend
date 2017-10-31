@@ -1,0 +1,88 @@
+# depslib dependency file v1.0
+1509472900 source:c:\users\public\cv\programacio-i-master\listas de stand\cascara.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"cascara.h"
+
+1509476014 source:c:\users\public\cv\programacio-i-master\listas de stand\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"cascara.h"
+	"funciones.h"
+
+1509448316 c:\users\public\cv\programacio-i-master\listas de stand\funciones.h
+
+1509448316 source:c:\users\public\cv\programacio-i-master\listas de stand\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"ArrayList.h"
+	"cascara.h"
+	"funciones.h"
+	"Load&Save.h"
+
+1509474366 source:c:\users\public\cv\programacio-i-master\listas de stand\load&save.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"cascara.h"
+	"Load&Save.h"
+
+1509448316 c:\users\public\cv\programacio-i-master\listas de stand\cascara.h
+
+1509461947 source:c:\users\alumno\desktop\listas de stand\cascara.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"cascara.h"
+
+1509461216 c:\users\alumno\desktop\listas de stand\cascara.h
+
+1509461830 source:c:\users\alumno\desktop\listas de stand\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"cascara.h"
+	"funciones.h"
+
+1509461839 c:\users\alumno\desktop\listas de stand\funciones.h
+
+1509461004 source:c:\users\alumno\desktop\listas de stand\load&save.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"cascara.h"
+	"Load&Save.h"
+
+1509461229 source:c:\users\alumno\desktop\listas de stand\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"cascara.h"
+	"funciones.h"
+	"Load&Save.h"
+
+1509476014 c:\users\public\cv\programacio-i-master\listas de stand\load&save.h
+
+1509457656 c:\users\alumno\desktop\listas de stand\load&save.h
+
+1509454037 source:c:\users\alumno\desktop\listas de stand\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1509454037 c:\users\alumno\desktop\listas de stand\arraylist.h
+
+1509448316 c:\users\public\cv\programacio-i-master\listas de stand\arraylist.h
+
+1509448316 source:c:\users\public\cv\programacio-i-master\listas de stand\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+

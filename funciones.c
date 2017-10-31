@@ -1,71 +1,237 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "ArrayList.h"
+#include "cascara.h"
 #include "funciones.h"
 
-float ingresarNumeroF(char mensaje[], float numero)
+
+Sstand** newArrayStand(int* size, int* reserveSize)
 {
-    printf("%s: \n",mensaje);
-    scanf("%f", &numero);
-    //numero = 1.56;
 
-    return numero;
-}
-
-float sumarFloats(float num1, float num2)
-{
-    float resultado;
-
-    resultado = num1 + num2;
+    Sstand** stands;
 
 
-    return resultado;
+    stands = (Sstand**) malloc(sizeof(Sstand*)*10);
+    if(stands == NULL) return stands;
 
-}
-
-float restarFloats(float num1, float num2)
-{
-    float resultado;
-
-    resultado = num1 - num2;
+   *size = 0;
 
 
-    return resultado;
+   *reserveSize = 10;
 
+
+
+
+    return stands;
 
 }
 
-float dividirFloats(float num1, float num2)
+int* constructInt(int valor)
 {
-    float resultado;
+    int* num;
 
-    resultado = num1 / num2;
-
-
-    return resultado;
+    num = (int*) malloc(sizeof(int));
+    if(num != NULL) *num = valor;
 
 
+    return num;
 }
 
-float multiplicarFloats(float num1, float num2)
+
+Sstand* constructParam(int id, char name[], char descripcion[], char reference[], int saga, int chapter, char linkImagen[])
 {
-    float resultado;
+    Sstand* stand;
 
-    resultado = num1 * num2;
+    stand = (Sstand*) malloc(sizeof(Sstand));
 
-
-    return resultado;
-
-
-}
-long long int factorial(int num)
-{
-    long long int valor =num;
-    int i = 0;
-    for(i = num - 1; i > 1; i--)
+    if(stand != NULL)
     {
-        valor *= i;
+
+        stand->id = id;
+        stand->saga = saga;
+        stand->chapter = chapter;
+        stand->name = dinamicCharacter(name);
+        if(stand->name == NULL) return NULL;
+
+        stand->reference = dinamicCharacter(reference);
+        if(stand->reference == NULL) return NULL;
+        stand->descripcion = dinamicCharacter(descripcion);
+        if(stand->descripcion == NULL) return NULL;
+        stand->linkImagen = dinamicCharacter(linkImagen);
+        if(stand->linkImagen == NULL) return NULL;
+
+
 
     }
 
-    return valor;
+
+    return stand;
 }
+
+
+Sstand* cargarStand(int id)
+{
+
+    Sstand* stand;
+
+    int  saga, chapter;
+    char name[1024], descripcion[1024], reference[1024], linkImagen[1024];
+
+
+
+    printf("ingrese el nombre:");
+
+    fflush(stdin);
+
+    cargarCaracter(1024, name);
+    printf("ingrese la descripcion:");
+
+    fflush(stdin);
+
+    cargarCaracter(1024, descripcion);
+
+
+    printf("ingrese el referencia:");
+
+    fflush(stdin);
+
+    cargarCaracter(1024, reference);
+
+
+    printf("ingrese la saga:");
+    fflush(stdin);
+    scanf("%d", &saga);
+    printf("ingrese el capitulo:");
+
+    fflush(stdin);
+    scanf("%d", &chapter);
+    printf("ingrese el linkImagen:");
+
+    fflush(stdin);
+    cargarCaracter(1024, linkImagen);
+
+    stand = constructParam(id, name, descripcion,reference, saga, chapter, linkImagen);
+
+
+    return stand;
+}
+
+
+
+
+void showStand(Sstand* stand){printf("%d, %s", stand->id, stand->name);}
+
+void showAllStand(ArrayList* standList)
+{
+    int i;
+
+    Sstand* stand;
+
+    if(standList != NULL)
+    {
+
+        for(i = 0; i < standList->len(standList); i++)
+        {
+            stand = standList->get(standList, i);
+
+            showStand(stand);
+
+
+        }
+
+    }
+
+}
+
+int getIndex(ArrayList* standList)
+{
+    int i = DENEID, id;
+
+    Sstand* stand;
+
+    showAllStand(standList);
+
+
+    if(standList == NULL) return i;
+
+    scanf("%d", &id);
+
+
+    for(i = 0; i < standList->len(standList); i++)
+    {
+
+        stand = standList->get(standList, i);
+
+        if(stand->id == id) break;
+
+
+    }
+
+
+    if(i = standList->len(standList)) i = DENEID;
+
+    return i;
+
+}
+
+int getId(ArrayList* standList)
+{
+    int i, id = DENEID;
+    Sstand* stand;
+
+    if(standList == NULL) return id;
+
+    id = 1000;
+    for(i = 0; i < standList->len(standList); i++)
+    {
+        stand = standList->get(standList, i);
+        id = stand->id +1;
+
+
+
+    }
+
+    return id;
+}
+
+
+char* dinamicCharacter(char character[])
+{
+    char* chars;
+    int len;
+
+    len = strlen(character);
+
+    chars = (char*) malloc(sizeof(char)*(len+1));
+
+    strcpy(chars, character);
+
+
+    return chars;
+}
+
+
+
+/**---------------------------------------------------------------*/
+
+void cargarCaracter(int tam, char caracteres[])
+{
+    char buffer[1024];
+
+    fflush(stdin);
+    gets(buffer);
+    while(strlen(buffer) > tam)
+    {
+        printf("ingreso mal la cadena de caracteres, ingrese de nuevo");
+        fflush(stdin);
+        gets(buffer);
+    }
+    strcpy(caracteres, buffer);
+
+
+}
+
+
+
+
