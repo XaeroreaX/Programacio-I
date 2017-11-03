@@ -23,5 +23,10 @@ Sstand* cargarStand(int id);
 
 int getId(ArrayList* standList);
 
+int getIndex(ArrayList* standList);
+
+void showStand(Sstand* stand);
+
+void showAllStand(ArrayList* standList);
 
 char* dinamicCharacter(char character[]);

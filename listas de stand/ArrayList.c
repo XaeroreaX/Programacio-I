@@ -643,7 +643,7 @@ int contract(ArrayList* pList,int index)
 
 
     //if(index)
-    for(i = index + 1; i < pList->size; i++)
+    for(i = index; i < pList->size; i++)
     {
 
         pList->pElements[i] = pList->pElements[i + 1];

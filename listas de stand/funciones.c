@@ -139,6 +139,57 @@ int getId(ArrayList* standList)
 }
 
 
+int getIndex(ArrayList* standList)
+{
+    int index, id;
+
+    Sstand* stand;
+
+    showAllStand(standList);
+
+    printf("ingrese el id del stand");
+
+    scanf("%d", &id);
+
+    for(index = 0; index < standList->len(standList); index++)
+    {
+
+        stand = standList->get(standList, index);
+
+        if(stand->id == id) break;
+
+    }
+
+    if(index == standList->len(standList)) index = DENEID;
+
+    return index;
+
+}
+
+
+void showStand(Sstand* stand){printf("%d:%s", stand->id, stand->name);}
+
+
+void showAllStand(ArrayList* standList)
+{
+    int i;
+
+    Sstand* stand;
+
+    for(i = 0; i < standList->len(standList); i++)
+    {
+
+        stand = standList->get(standList, i);
+
+        showStand(stand);
+
+        printf("\n");
+
+    }
+
+}
+
+
 char* dinamicCharacter(char character[])
 {
     char* chars;

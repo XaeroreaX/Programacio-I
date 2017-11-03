@@ -28,6 +28,7 @@ typedef struct
 
 
 
-int altaStand(ArrayList*);
+int altaStandList(ArrayList*);
 
 
+int bajaStandList(ArrayList*);

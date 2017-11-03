@@ -73,3 +73,49 @@
 
 1509454037 c:\users\alumno\desktop\listas de stand\arraylist.h
 
+1509462788 source:c:\users\jmpit\downloads\proyectos\projectos del cod\programacio-i-master\listas de stand\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1509462788 c:\users\jmpit\downloads\proyectos\projectos del cod\programacio-i-master\listas de stand\arraylist.h
+
+1509748581 source:c:\users\jmpit\downloads\proyectos\projectos del cod\programacio-i-master\listas de stand\cascara.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	"ArrayList.h"
+	"cascara.h"
+
+1509747780 c:\users\jmpit\downloads\proyectos\projectos del cod\programacio-i-master\listas de stand\cascara.h
+
+1509462788 source:c:\users\jmpit\downloads\proyectos\projectos del cod\programacio-i-master\listas de stand\load&save.c
+	<stdio.h>
+	<stdlib.h>
+	"ArrayList.h"
+	"cascara.h"
+	"Load&Save.h"
+
+1509462788 c:\users\jmpit\downloads\proyectos\projectos del cod\programacio-i-master\listas de stand\load&save.h
+
+1509748581 source:c:\users\jmpit\downloads\proyectos\projectos del cod\programacio-i-master\listas de stand\main.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	"ArrayList.h"
+	"cascara.h"
+	"funciones.h"
+	"Load&Save.h"
+
+1509747779 c:\users\jmpit\downloads\proyectos\projectos del cod\programacio-i-master\listas de stand\funciones.h
+
+1509747910 source:c:\users\jmpit\downloads\proyectos\projectos del cod\programacio-i-master\listas de stand\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+	"cascara.h"
+	"funciones.h"
+

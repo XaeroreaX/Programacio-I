@@ -37,13 +37,14 @@ int main()
             case 1:
                 system("cls");
 
-                if(altaStand(standList) == DENEID) printf("no se encotro espacio!!!");
+                if(altaStandList(standList) == DENEID) printf("no se encotro espacio!!!");
 
                 system("cls");
                 break;
 
             case 2:
 
+                if(bajaStandList(standList) == (DENEID - 1)) printf("no se pudo remover el stand");
 
                 break;
 
