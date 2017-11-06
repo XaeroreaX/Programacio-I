@@ -19,6 +19,7 @@ typedef struct
     char* descripcion;
     int saga;
     int chapter;
+    char* user;
     char* linkImagen;
 
 }Sstand;

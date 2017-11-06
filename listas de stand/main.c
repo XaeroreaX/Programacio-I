@@ -49,17 +49,20 @@ int main()
                 break;
 
             case 3:
-
+                if(modifStandList(standList) == DENEID) printf("no se pudo modificar el stand");
 
                 break;
 
             case 4:
 
+                generarPagina(standList);
 
                 break;
 
             case 5:
                 system("cls");
+
+
 
                 break;
 

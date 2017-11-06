@@ -15,7 +15,7 @@ Sstand** newArrayStand(int* size, int* reserveSize);
 int* constructInt(int valor);
 
 
-Sstand* constructParam(int id, char name[], char descripcion[], char[], int saga, int chapter, char linkImagen[]);
+Sstand* constructParam(int id, char name[], char descripcion[], char[], int saga, int chapter, char user[], char linkImagen[]);
 
 
 Sstand* cargarStand(int id);

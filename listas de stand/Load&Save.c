@@ -8,7 +8,7 @@
 int LoadStand(ArrayList* standList)
 {
     int flag = OK, returnAux = DENEID, i;
-    char id[10], name[500], reference[500], descripcion[1024], saga[10], chapter[10], linkImagen[1024];
+    char id[10], name[500], reference[500], descripcion[1024], saga[10], chapter[10],user[500], linkImagen[1024];
     Sstand* stand;
     int cont=0;
 
@@ -19,7 +19,7 @@ int LoadStand(ArrayList* standList)
     if(pFile == NULL || standList == NULL) return returnAux;
     returnAux = OK;
    //leer titulo
-    fscanf(pFile, "%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^\n]\n", id, name, reference, descripcion, saga, chapter, linkImagen);
+    fscanf(pFile, "%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^\n]\n", id, name, reference, descripcion, saga, chapter, user, linkImagen);
 
     //printf("hola");
     while(!feof(pFile))
@@ -29,9 +29,9 @@ int LoadStand(ArrayList* standList)
         if(flag != DENEID)
         {
 
-            fscanf(pFile, "%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^\n]\n", id, name, reference, descripcion, saga, chapter, linkImagen);
+            fscanf(pFile, "%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^@]@%[^\n]\n", id, name, reference, descripcion, saga, chapter, user, linkImagen);
 
-            stand = constructParam(atoi(id), name, reference, descripcion, atoi(saga), atoi(chapter), linkImagen);
+            stand = constructParam(atoi(id), name, reference, descripcion, atoi(saga), atoi(chapter), user, linkImagen);
 
             if(standList->add(standList, stand) == OK)
                 returnAux = standList->len(standList);
@@ -56,19 +56,114 @@ int saveStand(ArrayList* standList)
 
     if(standList == NULL || pFile == NULL) return returnAux;
 
-    fprintf(pFile, "id@name@reference@descripcion@saga@chapter@linkImagen\n");
+    fprintf(pFile, "id@name@reference@descripcion@saga@chapter@user@linkImagen\n");
     returnAux = OK;
     for(i = 0; i < standList->len(standList); i++)
     {
 
         stand = standList->get(standList, i);
 
-        fprintf(pFile, "%d@%s@%s@%s@%d@%d@%s\n", stand->id, stand->name, stand->reference,stand->descripcion, stand->saga, stand->chapter, stand->linkImagen);
+        fprintf(pFile, "%d@%s@%s@%s@%d@%d@%s%s\n", stand->id, stand->name, stand->reference,stand->descripcion, stand->saga, stand->chapter,stand->user, stand->linkImagen);
 
 
     }
 
     fclose(pFile);
 
+    return returnAux;
+}
+
+
+
+int generarPagina(ArrayList* standList)
+{
+    int i, returnAux = DENEID, val;
+
+    Sstand* stand;
+
+    FILE* file;
+
+    file = fopen("index.HTML", "w");
+
+    if(standList == NULL || file == NULL) return returnAux;
+
+
+
+    for(i = 0; i < *standList->len(standList); i++)
+    {
+
+        stand = standList->get(standList, i);
+
+
+
+
+        fprintf(file,"<img  src=%s alt=%s style=width:200px;hight:200px>",stand->linkImagen,stand->name);
+
+                //titulo
+        fprintf(file,"<h2><a href=#>%s</a></h2>",stand->name);
+
+                //otros aspectos
+
+      /*  int id;
+    char* name;
+    char* reference;
+    char* descripcion;
+    int saga;
+    int chapter;
+    char* user;
+    char* linkImagen;*/
+
+        fprintf(file,"<h3><li> referencia: %s</li>", stand->reference);
+        fprintf(file,"<h3><li> usuario: %s</li>", stand->user);
+        fprintf(file,"<h3><li> aparicion: ch%d parte", stand->chapter);
+
+        switch(stand->saga)
+        {
+            case PB:
+                fprintf("Phanton Blood</li>");
+                break;
+            case BT:
+                fprintf("Battle Tendency</li>");
+                break;
+            case SC:
+                fprintf("Stardust Cruzade</li>");
+                break;
+            case DIU:
+                fprintf("Diamond Is Umbreakable</li>");
+                break;
+            case VA:
+                fprintf("Vento Aureo</li>");
+                break;
+            case SO:
+                fprintf("Stone Ocean</li>");
+                break;
+            case SBR:
+                fprintf("Steel Ball Run</li>");
+                break;
+            case JOJOLION:
+                fprintf("Jojolion</li>");
+                break;
+            default:
+                fprintf("--</li>");
+                break;
+
+
+        }
+
+
+        fprintf(file,"<pre>%s</pre>", movie->descripcion);
+
+
+    }
+
+
+
+
+    printf("pagina generada esxitosamente");
+
+
+
+    fclose(file);
+    returnAux = OK;
     return returnAux;
 }

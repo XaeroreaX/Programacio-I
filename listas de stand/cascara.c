@@ -67,3 +67,45 @@ int bajaStandList(ArrayList* standList)
 
 
 }
+
+
+int modifStandList(ArrayList* standList)
+{
+    int index, id, returnAux = DENEID - 1;
+
+    char seleccion;
+
+    Sstand* stand;
+
+
+    if(standList == NULL) return returnAux;
+
+    index = getIndex(standList);
+
+
+    if(index != DENEID)
+    {
+        stand = standList->get(standList, index);
+
+        printf("desea modificar a %s? y/n\n", stand->name);
+
+        seleccion = getch();
+
+        if(seleccion = 'y')
+        {
+            printf("ingrese los datos:\n");
+
+
+            id = getId(standList);
+
+            stand = cargarStand(id);
+
+            returnAux = standList->set(standList, stand);
+
+            if(returnAux == DENEID) returnAux = DENEID - 1;
+        }
+    }
+
+
+
+}
