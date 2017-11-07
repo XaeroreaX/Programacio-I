@@ -37,20 +37,40 @@ int main()
             case 1:
                 system("cls");
 
-                if(altaStandList(standList) == DENEID) printf("no se encotro espacio!!!");
+                if(altaStandList(standList) == DENEID)
+                {
 
+
+                    printf("no se encotro espacio!!!\n");
+                    system("pause");
+                }
                 system("cls");
                 break;
 
             case 2:
+                system("cls");
 
-                if(bajaStandList(standList) == (DENEID - 1)) printf("no se pudo remover el stand");
+                if(bajaStandList(standList) == (DENEID - 1))
+                {
 
+
+                    printf("no se pudo remover el stand\n");
+                    system("pause");
+                }
+                system("cls");
                 break;
 
             case 3:
-                if(modifStandList(standList) == DENEID) printf("no se pudo modificar el stand");
+                system("cls");
 
+                if(modifStandList(standList) == DENEID)
+                {
+
+
+                    printf("no se pudo modificar el stand\n");
+                    system("pause");
+                }
+                system("cls");
                 break;
 
             case 4:

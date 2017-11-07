@@ -152,7 +152,7 @@ int getIndex(ArrayList* standList)
 
     Sstand* stand;
 
-    showAllStand(standList);
+    showAllStand(standList,showStand);
 
     printf("ingrese el id del stand");
 
@@ -177,7 +177,10 @@ int getIndex(ArrayList* standList)
 void showStand(Sstand* stand){printf("%d:%s", stand->id, stand->name);}
 
 
-void showAllStand(ArrayList* standList)
+void showStandDescription(Sstand* stand){printf("%d:%s\n-------------------------------------------------------------\n\n%50s\n\n---------------------------------------------------\n", stand->id, stand->name,stand->descripcion);}
+
+
+void showAllStand(ArrayList* standList, void (*funcion)(Sstand*))
 {
     int i;
 
@@ -188,7 +191,7 @@ void showAllStand(ArrayList* standList)
 
         stand = standList->get(standList, i);
 
-        showStand(stand);
+        funcion(stand);
 
         printf("\n");
 

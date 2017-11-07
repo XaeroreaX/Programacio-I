@@ -89,7 +89,7 @@ int generarPagina(ArrayList* standList)
 
 
 
-    for(i = 0; i < *standList->len(standList); i++)
+    for(i = 0; i < standList->len(standList); i++)
     {
 
         stand = standList->get(standList, i);
@@ -115,43 +115,43 @@ int generarPagina(ArrayList* standList)
 
         fprintf(file,"<h3><li> referencia: %s</li>", stand->reference);
         fprintf(file,"<h3><li> usuario: %s</li>", stand->user);
-        fprintf(file,"<h3><li> aparicion: ch%d parte", stand->chapter);
+        fprintf(file,"<h3><li> aparicion:  parte ");
 
         switch(stand->saga)
         {
             case PB:
-                fprintf("Phanton Blood</li>");
+                fprintf(file,"Phanton Blood ch%d</li>", stand->chapter);
                 break;
             case BT:
-                fprintf("Battle Tendency</li>");
+                fprintf(file,"Battle Tendency ch%d</li>", stand->chapter);
                 break;
             case SC:
-                fprintf("Stardust Cruzade</li>");
+                fprintf(file,"Stardust Cruzade ch%d</li>", stand->chapter);
                 break;
             case DIU:
-                fprintf("Diamond Is Umbreakable</li>");
+                fprintf(file,"Diamond Is Umbreakable ch%d</li>", stand->chapter);
                 break;
             case VA:
-                fprintf("Vento Aureo</li>");
+                fprintf(file,"Vento Aureo ch%d</li>", stand->chapter);
                 break;
             case SO:
-                fprintf("Stone Ocean</li>");
+                fprintf(file,"Stone Ocean ch%d</li>", stand->chapter);
                 break;
             case SBR:
-                fprintf("Steel Ball Run</li>");
+                fprintf(file,"Steel Ball Run ch%d</li>", stand->chapter);
                 break;
             case JOJOLION:
-                fprintf("Jojolion</li>");
+                fprintf(file,"Jojolion ch%d</li>", stand->chapter);
                 break;
             default:
-                fprintf("--</li>");
+                fprintf(file,"-- ch%d</li>");
                 break;
 
 
         }
 
 
-        fprintf(file,"<pre>%s</pre>", movie->descripcion);
+        fprintf(file,"<pre>%s</pre>", stand->descripcion);
 
 
     }

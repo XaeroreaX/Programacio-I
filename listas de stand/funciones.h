@@ -27,6 +27,8 @@ int getIndex(ArrayList* standList);
 
 void showStand(Sstand* stand);
 
-void showAllStand(ArrayList* standList);
+void showStandDescription(Sstand* stand);
+
+void showAllStand(ArrayList* standList, void (*funcion)(Sstand*));
 
 char* dinamicCharacter(char character[]);
