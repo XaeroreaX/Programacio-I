@@ -18,7 +18,7 @@ int main()
     if(LoadStand(standList) == DENEID) printf("no pudo abrir el archivo\n");
  //   printf("%d-%d", size, reserveSize);
 
-    while(option != 5)
+    while(option != 6)
     {
 
 
@@ -26,7 +26,8 @@ int main()
         printf("2-baja\n");
         printf("3-modificacion\n");
         printf("4-generar pagina\n");
-        printf("5-salir\n");
+        printf("5-informar\n");
+        printf("6-salir\n");
 
         printf("ingrese opcion:");
 
@@ -82,9 +83,20 @@ int main()
             case 5:
                 system("cls");
 
+                informarStand(standList, 3);
+
+
+                informarStand(standList, 0);
+
+                system("pause");
+
 
 
                 break;
+            case 6:
+                system("cls");
+                break;
+
 
             default:
 

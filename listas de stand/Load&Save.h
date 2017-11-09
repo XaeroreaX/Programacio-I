@@ -8,3 +8,11 @@
 #define JOJOLION 8
 #define OK 0
 #define DENEID -1
+
+
+
+int LoadStand(ArrayList* standList);
+
+int saveStand(ArrayList* standList);
+
+int generarPagina(ArrayList* standList);

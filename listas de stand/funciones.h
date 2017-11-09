@@ -31,4 +31,6 @@ void showStandDescription(Sstand* stand);
 
 void showAllStand(ArrayList* standList, void (*funcion)(Sstand*));
 
+int compareStandAparicion(void* standA, void* standB);
+
 char* dinamicCharacter(char character[]);

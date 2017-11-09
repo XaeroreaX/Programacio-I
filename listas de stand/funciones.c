@@ -127,18 +127,58 @@ Sstand* cargarStand(int id)
 
 int getId(ArrayList* standList)
 {
-    int i, id = DENEID;
-    Sstand* stand;
+    int flagEncontrado = DENEID;
+    int i, j,id;
+    Sstand* stand1, *stand2;
 
     if(standList == NULL) return id;
 
-    id = 1000;
-    for(i = 0; i < standList->len(standList); i++)
+
+    if(standList->isEmpty(standList) == 1)
     {
-        stand = standList->get(standList, i);
-        id = stand->id +1;
+        id = 1000;
+    }
+    else
+    {
 
 
+        stand1 =(Sstand*) standList->get(standList, 0);
+        id = stand1->id +1;
+
+
+        for(i = 1; i < standList->len(standList); i++)
+        {
+            stand1 =(Sstand*) standList->get(standList, i);
+
+            if(stand1->id == id)
+            {
+                id = stand1->id +1;
+            }
+            else
+            {
+
+                for(j = i + 1; standList->len(standList); j++)
+                {
+                    stand2 =(Sstand*) standList->get(standList, j);
+
+                    if(stand2->id == id) break;
+
+                }
+
+
+                if(j < standList->len(standList)) flagEncontrado = OK;
+
+            }
+
+            if(flagEncontrado == DENEID)
+            {
+                id = stand1->id + 1;
+            }
+            else
+            {
+                break;
+            }
+        }
 
     }
 
@@ -177,7 +217,7 @@ int getIndex(ArrayList* standList)
 void showStand(Sstand* stand){printf("%d:%s", stand->id, stand->name);}
 
 
-void showStandDescription(Sstand* stand){printf("%d:%s\n-------------------------------------------------------------\n\n%50s\n\n---------------------------------------------------\n", stand->id, stand->name,stand->descripcion);}
+void showStandDescription(Sstand* stand){printf("%s\n-------------------------------------------------------------\n\n%50s\n\n---------------------------------------------------\n",stand->name,stand->descripcion);}
 
 
 void showAllStand(ArrayList* standList, void (*funcion)(Sstand*))
@@ -199,6 +239,36 @@ void showAllStand(ArrayList* standList, void (*funcion)(Sstand*))
 
 }
 
+
+int compareStandAparicion(void* standA, void* standB)
+{
+
+    if(((Sstand*) standA)->saga > ((Sstand*)standB)->saga)
+    {
+        return 1;
+    }
+
+    if(((Sstand*) standA)->saga < ((Sstand*)standB)->saga)
+    {
+        return -1;
+    }
+
+    if(((Sstand*) standA)->saga == ((Sstand*)standB)->saga)
+    {
+        if(((Sstand*) standA)->chapter > ((Sstand*)standB)->chapter)
+        {
+            return 1;
+        }
+
+        if(((Sstand*) standA)->saga < ((Sstand*)standB)->saga)
+        {
+            return -1;
+        }
+    }
+
+    return 0;
+
+}
 
 char* dinamicCharacter(char character[])
 {

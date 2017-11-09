@@ -4,6 +4,7 @@
 #include <conio.h>
 #include "ArrayList.h"
 #include "cascara.h"
+#include "funciones.h"
 
 
 int altaStandList(ArrayList* standList)
@@ -108,4 +109,25 @@ int modifStandList(ArrayList* standList)
 
 
 
+}
+
+
+int informarStand(ArrayList* standList, int parte)
+{
+
+    int i, returnAux = DENEID;
+
+    if(standList == NULL) return returnAux;
+
+    if(parte == 0)
+    {
+        showAllStand(standList, showStandDescription);
+
+    }
+    else
+    {
+        standList->sort(standList, compareStandAparicion, 1);
+
+
+    }
 }
