@@ -112,12 +112,29 @@ int modifStandList(ArrayList* standList)
 }
 
 
-int informarStand(ArrayList* standList, int parte)
+int informarStand(ArrayList* standList)
 {
 
-    int i, returnAux = DENEID;
+    int i, returnAux = DENEID, parte, from = DENEID, to = DENEID, flagFrom = DENEID/*, flagTo = DENEID*/;
+
+    Sstand* stand;
+
+    ArrayList* arco;
 
     if(standList == NULL) return returnAux;
+
+    printf("ingrese las siguientes pociones\n");
+    printf("0.todas las sagas\n");
+    printf("1. parte 1\n");
+    printf("2. parte 2 \n");
+    printf("3. parte 3\n");
+    printf("4. parte 4\n");
+    printf("5. parte 5\n");
+    printf("6. parte 6\n");
+    printf("7. parte 7\n");
+    printf("8. parte 8\n");
+    printf("ingrese opcion:");
+    scanf("%d", &parte);
 
     if(parte == 0)
     {
@@ -126,7 +143,50 @@ int informarStand(ArrayList* standList, int parte)
     }
     else
     {
-        standList->sort(standList, compareStandAparicion, 1);
+
+        for(i = 0; i < standList->len(standList); i++)
+        {
+
+            stand = standList->get(standList, i);
+
+            if(flagFrom == DENEID)
+            {
+                if(parte == stand->saga)
+                {
+                    from = i;
+                    flagFrom = OK;
+                }
+
+            }
+
+
+            if(from != DENEID)
+            {
+                if(stand->saga != parte)
+                {
+                    to = i;
+                    break;
+                }
+            }
+
+
+        }
+
+        if(from != DENEID)
+        {
+            if(to != DENEID)
+            {
+                arco = standList->subList(standList, from, to);
+            }
+            else
+            {
+                arco = standList->subList(standList, from, standList->len(standList));
+            }
+
+        }
+
+
+        showAllStand(arco, showStandDescription);
 
 
     }

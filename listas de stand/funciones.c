@@ -157,11 +157,11 @@ int getId(ArrayList* standList)
             else
             {
 
-                for(j = i + 1; standList->len(standList); j++)
+                for(j = i + 1; j < standList->len(standList); j++)
                 {
                     stand2 =(Sstand*) standList->get(standList, j);
 
-                    if(stand2->id == id) break;
+                    if(id == stand2->id) break;
 
                 }
 

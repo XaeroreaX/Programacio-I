@@ -83,10 +83,9 @@ int main()
             case 5:
                 system("cls");
 
-                informarStand(standList, 3);
+                informarStand(standList);
 
 
-                informarStand(standList, 0);
 
                 system("pause");
 
@@ -104,7 +103,7 @@ int main()
                 break;
 
         }
-
+        standList->sort(standList, compareStandAparicion, 1);
 
     }
 
