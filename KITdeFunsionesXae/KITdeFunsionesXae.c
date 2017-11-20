@@ -233,6 +233,69 @@ int getId(sSong canciones[], int size)
     return id;
 }
 
+
+/**------------------------------------------------------------------------*/
+
+int getId(ArrayList* standList)
+{
+    int flagEncontrado = DENEID;
+    int i, j,id;
+    Sstand* stand1, *stand2;
+
+    if(standList == NULL) return id;
+
+
+    if(standList->isEmpty(standList) == 1)
+    {
+        id = 1000;
+    }
+    else
+    {
+
+
+        stand1 =(Sstand*) standList->get(standList, 0);
+        id = stand1->id +1;
+
+
+        for(i = 1; i < standList->len(standList); i++)
+        {
+            stand1 =(Sstand*) standList->get(standList, i);
+
+            if(stand1->id == id)
+            {
+                id = stand1->id +1;
+            }
+            else
+            {
+
+                for(j = i + 1; j < standList->len(standList); j++)
+                {
+                    stand2 =(Sstand*) standList->get(standList, j);
+
+                    if(id == stand2->id) break;
+
+                }
+
+
+                if(j < standList->len(standList)) flagEncontrado = OK;
+
+            }
+
+            if(flagEncontrado == DENEID)
+            {
+                id = stand1->id + 1;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+    }
+
+    return id;
+}
+
 /**---------------------------------------------------------------*/
 
 int buscarEspcioStruct(sSong canciones[], int size)
@@ -548,40 +611,6 @@ int fileToList(ArrayList* movieList)
 }
 
 
-int StructText(structArray** array, int size)
-{
-   char Text1[500], Text2[500], Text3[500], Text4[500];
-   struct producto;
-   int cont=0;
-
-   FILE * pFile;
-
-   pFile = fopen ("productos.csv", "r");
-   //leer titulo
-      fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", codigo, descripcion, categoria, precio);
-
-   while(!feof(pFile))
-   {
-
-
-
-       fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", Text1, Text2, Text3, Text4);
-
-       producto.codigo = atoi(Text1);
-       producto.categoria = atoi(Text2);
-       strcpy(producto.descripcion, Text3);
-       producto.precio = atof(Text4);
-
-     //  printf("TEXTO : %s - %s - %s - %s\n", codigo, descripcion, categoria, precio);
-        array[cont] = producto;
-       //printf("STRUCT: %d - %s - %d - %.2f\n", producto.codigo, producto.descripcion, producto.categoria, producto.precio);
-        cont++;
-   }
-
-      fclose(pFile);
-
-    return cont;
-}
 /**-------------------------------------------------------------*/
 
 
