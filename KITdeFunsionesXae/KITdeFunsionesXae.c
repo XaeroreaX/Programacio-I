@@ -169,83 +169,39 @@ void burbujeo()
 /**---------------------------------------------------------ALTA--------------------------------------------------------------------*/
 
 
-struct cargarS()
+int AltaDeCliente(ArrayList* clienteList)
 {
-    int i = 0;
+    int returnAux = DENIED, id;
+    sCliente* cliente;
 
-    struct persona;
+    if(clienteList == NULL) return returnAux;
 
-    printf("\ningrese el nombre ");
-    cargarCaracter(N, persona.nombre);
+    id = C_getId(clienteList);
 
+    printf("ingrese los datos del cliente: \n\n");
+    cliente = C_cargarCliente(id);
 
-    printf("\ningrese la edad");
-    scanf("%d", &persona.edad);
+    returnAux = clienteList->add(clienteList, cliente);
 
-
-    return persona;
-
+    return returnAux;
 
 }
 
 
-/**------------------------------------------------------------------------*/
 
-sSong addS(sSong canciones[], int size)
+
+int C_getId(ArrayList* clienteList)
 {
-    int i = 0;
-
-    sSong song;
-
-    song.idCansion = buscarEspcioSong(canciones, size);
-
-    printf("\ningrese el nombre");
-    cargarCaracter(30, song.nombre);
+    int flagEncontrado = DENIED,i, j,id;
 
 
-    printf("\ningrese la duracion");
-    song.duracion = numValidado("\ningrese la duracion", 0 , 3600);
+
+    sCliente* cliente1, *cliente2;
+
+    if(clienteList == NULL) return DENIED;
 
 
-    return song;
-
-
-}
-
-/**------------------------------------------------------------------------*/
-
-int getId(sSong canciones[], int size)
-{
-
-    int i, id = 1000;
-
-    for(i = 0; i < size; i++)
-    {
-        if(canciones[i].flagAlta == OK)
-        {
-            id = canciones[i].idCansion + 1;
-
-        }
-        else break;
-
-    }
-
-    return id;
-}
-
-
-/**------------------------------------------------------------------------*/
-
-int getId(ArrayList* standList)
-{
-    int flagEncontrado = DENEID;
-    int i, j,id;
-    Sstand* stand1, *stand2;
-
-    if(standList == NULL) return id;
-
-
-    if(standList->isEmpty(standList) == 1)
+    if(clienteList->isEmpty(clienteList) == 1)
     {
         id = 1000;
     }
@@ -253,37 +209,37 @@ int getId(ArrayList* standList)
     {
 
 
-        stand1 =(Sstand*) standList->get(standList, 0);
-        id = stand1->id +1;
+        cliente1 =(sCliente*) clienteList->get(clienteList, 0);
+        id = cliente1->idCliente +1;
 
 
-        for(i = 1; i < standList->len(standList); i++)
+        for(i = 1; i < clienteList->len(clienteList); i++)
         {
-            stand1 =(Sstand*) standList->get(standList, i);
+            cliente1 =(sCliente*) clienteList->get(clienteList, i);
 
-            if(stand1->id == id)
+            if(cliente1->idCliente == id)
             {
-                id = stand1->id +1;
+                id = cliente1->idCliente +1;
             }
             else
             {
 
-                for(j = i + 1; j < standList->len(standList); j++)
+                for(j = i + 1; j < clienteList->len(clienteList); j++)
                 {
-                    stand2 =(Sstand*) standList->get(standList, j);
+                    cliente2 =(sCliente*) clienteList->get(clienteList, j);
 
-                    if(id == stand2->id) break;
+                    if(id == cliente2->idCliente) break;
 
                 }
 
 
-                if(j < standList->len(standList)) flagEncontrado = OK;
+                if(j < clienteList->len(clienteList)) flagEncontrado = OK;
 
             }
 
-            if(flagEncontrado == DENEID)
+            if(flagEncontrado == DENIED)
             {
-                id = stand1->id + 1;
+                id = cliente1->idCliente + 1;
             }
             else
             {
@@ -296,7 +252,159 @@ int getId(ArrayList* standList)
     return id;
 }
 
-/**---------------------------------------------------------------*/
+
+sCliente* C_cargarCliente(int id)
+{
+    sCliente* cliente;
+
+    char nombre[100];
+    char apellido[100];
+    int documento;
+    printf("ingrese un nombre:");
+    cargarCaracter(100, nombre);
+
+    printf("ingrese el apellido:");
+    cargarCaracter(100, apellido);
+
+    printf("ingrese el documneto");
+    scanf("%d",&documento);
+
+    cliente = C_contructParamClientes(id,nombre, apellido, documento);
+
+    return cliente;
+}
+
+
+sCliente* C_contructParamClientes(int id, char nombre[], char apellido[], int documento)
+{
+    sCliente* cliente;
+
+    cliente =(sCliente*) malloc(sizeof(sCliente));
+
+    if(cliente != NULL)
+    {
+        cliente->idCliente = id;
+
+        cliente->nombre = dinamicCharacter(nombre);
+        cliente->apellido = dinamicCharacter(apellido);
+
+        cliente->documento = documento;
+
+    }
+
+    return cliente;
+}
+
+
+
+/**------------------------------------------------------------------------------------------------------*/
+
+
+
+/**---------------------------------------------------------BAJA--------------------------------------------------------------------*/
+
+
+int bajaDeCliente(ArrayList* clienteList)
+{
+    int i, returnAux = DENIED;
+    sCliente* cliente;
+
+    if(clienteList == NULL) return returnAux;
+
+    if(clienteList->isEmpty(clienteList) != OKP)
+    {
+        i = C_getIndex(clienteList);
+
+        cliente = clienteList->pop(clienteList, i);
+
+        if(cliente != NULL)
+        {
+            printf("el cliente:");
+            C_showCliente(cliente);
+            printf("ha sido eliminado\n");
+            returnAux = OK;
+        }
+    }
+    else
+    {
+        printf("isEmpty!!!\n");
+        returnAux = OK;
+    }
+
+    return returnAux;
+}
+
+
+int C_getIndex(ArrayList* clientetList)
+{
+    int i = DENIED, id;
+    sCliente* cliente;
+
+    if(clientetList == NULL) return i;
+
+    C_showAllClientes(clientetList, C_showClienteId);
+
+    printf("ingrese el id:");
+    scanf("%d", &id);
+
+
+    for(i = 0; i < clientetList->len(clientetList);i++)
+    {
+        cliente = (sCliente*) clientetList->get(clientetList, i);
+
+        if(cliente->idCliente = id) break;
+
+    }
+
+    return i;
+}
+
+
+/**------------------------------------------------------------------------------------------------------*/
+
+
+///**-------------------------------------shows------------------------------------------------*/
+
+void C_showAllClientes(ArrayList* clienteList, void (*funcion)(sCliente*))
+{
+    int i;
+
+    sCliente* cliente;
+
+
+
+    for(i = 0; i < clienteList->len(clienteList); i++)
+    {
+
+        cliente = clienteList->get(clienteList, i);
+
+        funcion(cliente);
+
+        printf("\n");
+
+    }
+
+}
+
+void C_showCliente(sCliente* cliente){printf("%s %s", cliente->nombre, cliente->apellido);}
+
+void C_showClienteData(sCliente* cliente)
+{
+    printf("----------------------------------------------------------------------\n\n");
+    printf("cliente: %s %s\n\n", cliente->apellido, cliente->nombre);
+    printf("DNI:%d\n\n", cliente->documento);
+
+}
+
+void C_showClienteId(sCliente* cliente)
+{
+    printf("%d)%s %s", cliente->idCliente, cliente->nombre, cliente->apellido);
+}
+
+
+
+///**-----------------------------------------------------------------------------------------*/
+
 
 int buscarEspcioStruct(sSong canciones[], int size)
 {
@@ -312,27 +420,8 @@ int buscarEspcioStruct(sSong canciones[], int size)
 
 
 
-/**---------------------------------------------------------------*/
-
-char cargarCaracter(int tam, char caracteres[])
-{
-    char buffer[1024];
-
-    fflush(stdin);
-    gets(buffer);
-    while(strlen(buffer) > tam)
-    {
-        printf("ingreso mal la cadena de caracteres, ingrese de nuevo");
-        fflush(stdin);
-        gets(buffer);
-    }
-    strcpy(caracteres, buffer);
-
-    return caracteres[tam];
-}
 
 
-/**---------------------------------------------------------------*/
 
 int numValidado(char messages[], int ground, int top)
 {
@@ -353,7 +442,28 @@ int numValidado(char messages[], int ground, int top)
 }
 
 
-/**---------------------------------------------------------------*/
+/**----------------------------------------cadena de caracteres---------------------------------------------------*/
+
+char cargarCaracter(int tam, char caracteres[])
+{
+    char buffer[1024];
+
+    fflush(stdin);
+    gets(buffer);
+    while(strlen(buffer) > tam)
+    {
+        printf("ingreso mal la cadena de caracteres, ingrese de nuevo");
+        fflush(stdin);
+        gets(buffer);
+    }
+    strcpy(caracteres, buffer);
+
+    return caracteres[tam];
+}
+
+
+
+
 
 int charAddDinamic(char* caracter)
 {
@@ -380,7 +490,7 @@ int charAddDinamic(char* caracter)
     return returnAux;
 }
 
-/**---------------------------------------------------------------*/
+
 
 void vaciar(int size, char string[size])
 {
@@ -391,6 +501,46 @@ void vaciar(int size, char string[size])
 
 
 }
+
+
+char* dinamicCharacter(char character[])
+{
+    char* chars;
+    int len;
+
+    len = strlen(character);
+
+    chars = (char*) malloc(sizeof(char)*(len+1));
+
+    strcpy(chars, character);
+
+
+    return chars;
+}
+
+
+void fgetsToChar(FILE* pFile, int size, char string[size], char To)
+{
+    int i;
+
+    char auxChar;
+
+
+    for(i = 0; auxChar != To && i < size; i++)
+    {
+        auxChar = fgetc(pFile);
+        if(auxChar != To)
+            string[i] = auxChar;
+
+    }
+
+
+
+}
+
+
+
+///**----------------------------------------------------------------------------------------------------------*/
 
 /**-------------------------------------------------baja----------------------------------------------------------------------------*/
 
@@ -534,6 +684,9 @@ void showDataSAuto(sAuto autos[], int sizeA)
 
 /**----------------------------------------------------ARCHIVOS-------------------------------------------------------------------------*/
 
+
+////////////////////////////////////////////////////////////////////////////////////BINARIOS
+
 int ListToFile()
 {
     FILE* file;
@@ -567,7 +720,6 @@ int ListToFile()
 }
 
 
-/**-------------------------------------------------------------*/
 
 int fileToList(ArrayList* movieList)
 {
@@ -611,27 +763,71 @@ int fileToList(ArrayList* movieList)
 }
 
 
-/**-------------------------------------------------------------*/
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void fgetsToChar(FILE* pFile, int size, char string[size], char To)
+
+//////////////////////////////////////////////////////////////////////////////////////////TEXTO
+int V_fileToListText(ArrayList* ventaList)
 {
-    int i;
+    FILE* pFile;
 
-    char auxChar;
+    int returnAux = DENIED;
+    char idVenta[50], nombre[100], codigo[100], idCliente[50];
+    sVenta* venta;
 
+    pFile = fopen("ventas.txt", "r");
 
-    for(i = 0; auxChar != To && i < size; i++)
+    if(ventaList == NULL || pFile == NULL) return returnAux;
+
+    fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", idVenta, nombre, codigo, idCliente);
+
+    while(!feof(pFile))
     {
-        auxChar = fgetc(pFile);
-        if(auxChar != To)
-            string[i] = auxChar;
+        fscanf(pFile, "%[^,],%[^,],%[^,],%[^\n]\n", idVenta, nombre, codigo, idCliente);
+        venta = V_contructParamVenta(atoi(idVenta), nombre, codigo, atoi(idCliente));
 
+        returnAux = ventaList->add(ventaList, venta);
     }
 
-
-
+    return returnAux;
 }
+
+int V_listToFileText(ArrayList* ventaList)
+{
+    FILE* pFIle;
+    int i, returnAux = DENIED;
+    sVenta* venta;
+
+    pFIle = fopen("ventas.txt", "w+");
+
+    if(ventaList == NULL || pFIle == NULL) return returnAux;
+
+    fprintf(pFIle, "id,nombre,codigo,idCliente\n");
+
+    for(i = 0; i < ventaList->len(ventaList); i++)
+    {
+        venta = (sVenta*) ventaList->get(ventaList, i);
+        if(venta != NULL)
+        {
+            fprintf(pFIle, "%d,%s,%s,%d\n", venta->idVenta, venta->nombre, venta->codigo, venta->idCliente);
+            returnAux = OK;
+        }
+    }
+
+    return returnAux;
+}
+///////////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////////TEXTO
+
+
+
+
+/**---------------------------------------------------------------------------------*/
+
+
 
 
 
@@ -668,6 +864,38 @@ int compareMovie(void* MovieA, void* MovieB)
     return 0;
 
 
+}
+
+
+
+int C_compareCliente(void* clienteA, void* clienteB)
+{
+
+    if(strcmp(((sCliente*)clienteA)->apellido, ((sCliente*)clienteB)->apellido ) < 0)
+    {
+        return -1;
+    }
+
+    if(strcmp(((sCliente*)clienteA)->apellido, ((sCliente*)clienteB)->apellido ) > 0)
+    {
+        return 1;
+    }
+
+
+    if(strcmp(((sCliente*)clienteA)->apellido, ((sCliente*)clienteB)->apellido ) == 0)
+    {
+
+        if(strcmp(((sCliente*)clienteA)->nombre, ((sCliente*)clienteB)->nombre ) < 0)
+        {
+            return -1;
+        }
+
+        if(strcmp(((sCliente*)clienteA)->nombre, ((sCliente*)clienteB)->nombre ) > 0)
+        {
+            return 1;
+        }
+
+    }
 }
 
 
